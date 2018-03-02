@@ -48,6 +48,8 @@
 
 \begin{document}
 
+    \include{chap/newcommands}
+    
 	\frontmatter
 	\pagestyle{empty}
 	\maketitle
@@ -60,14 +62,14 @@
 	\pagestyle{plain}
 	\setcounter{page}{0}
 	\pagenumbering{Roman}
+
 	\include{chap/abstract}
 
 	\tableofcontents
 
 	\mainmatter
-	\include{chap/introduction}
-	\include{chap/chap1}
-	\include{chap/conclusion}
+	\include{chap/chap1_introduction}
+	\include{chap/chap2_fracture_animation}
 
 
 	\appendix
@@ -77,4 +79,5 @@
 	\include{chap/acknowledge}
 
 	\include{chap/originauth}
+
 \end{document}
