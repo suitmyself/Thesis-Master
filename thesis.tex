@@ -13,8 +13,8 @@
 
 \pkuthssinfo{
 	cthesisname = {硕士研究生学位论文}, ethesisname = {Master Thesis},
-	ctitle      = {基于近场动力学理论的弹塑性材料碎裂仿真},
-    etitle      = {Peridynamics-Based Fracture Animation for Elastoplastic Solids},
+	ctitle      = {基于近场动力学理论的弹塑性材料形变及碎裂仿真},
+    etitle      = {Peridynamics-Based Deformation and Fracture Animation for Elastoplastic Solids},
 	cauthor     = {陈伟},
 	eauthor     = {Wei Chen},
 	studentid   = {1501214372},
@@ -25,27 +25,11 @@
 	direction   = {计算机图形学},
 	cmentor     = {李胜\ 副教授},
     ementor     = {Sheng Li},
-	ckeywords   = {近场动力学，碎裂，弹塑性， 仿真},
-    ekeywords   = {peridynamics, fracture, elastoplasticity, animation}
+	ckeywords   = {近场动力学，形变，碎裂，弹塑性， 仿真},
+    ekeywords   = {peridynamics, deformation, fracture, elastoplasticity, animation}
 }
 
 \addbibresource{thesis.bib}
-
-
-\def\pkuthssffaq{%
-	\emph{\textcolor{red}{pkuthss 文档模版最常见问题：}}
-
-	\texttt{\string\cite}、\texttt{\string\parencite} %
-	和 \texttt{\string\supercite} 三个命令分别产生%
-	未格式化的、带方括号的和上标且带方括号的引用标记：%
-	\cite{test-en}，\parencite{test-zh}、\supercite{test-en, test-zh}。
-
-	若要避免章末空白页，请在调用 pkuthss 文档类时加入 \texttt{openany} 选项。
-
-	如果编译时不出参考文献，
-	请参考 \texttt{texdoc pkuthss}“问题及其解决”一章
-	“其它可能存在的问题”一节中关于 biber 的说明。
-}
 
 \begin{document}
 
@@ -59,6 +43,7 @@
 	\include{chap/copyright}
 
 
+
 	\cleardoublepage
 	\pagestyle{plain}
 	\setcounter{page}{0}
@@ -69,9 +54,12 @@
 	\tableofcontents
 
 	\mainmatter
-	\include{chap/chap1_introduction}
-	\include{chap/chap2_fracture_animation}
-    \include{chap/chap3_peridynamics}
+	\include{chap/chap1_preface}
+	\include{chap/chap2_introduction_to_animation_and_peridynamics}
+    \include{chap/chap3_pdm_deformation}
+    \include{chap/chap4_pdm_fracture}
+    \include{chap/chap5_conclusion_and_future_work}
+    
 
 
 	\appendix
@@ -79,7 +67,7 @@
 
 	\backmatter
 	\include{chap/acknowledge}
-
+    \include{chap/achievement}
 	\include{chap/originauth}
 
 \end{document}
