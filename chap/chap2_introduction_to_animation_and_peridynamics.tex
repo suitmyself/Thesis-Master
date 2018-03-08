@@ -5,7 +5,7 @@
 \begin{figure}[htbp!]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=\linewidth]{E:/Thesis-Master/chap/image/physically_based_animation}
+  \includegraphics[width=\linewidth]{chap/image/physically_based_animation}
 
   \caption{\label{fig_physically_based_animation}
            物理仿真动力学循环示意图。物体所受内外力、加速度、以及物体状态构成动力学循环三角。
@@ -24,7 +24,7 @@
 \begin{figure}[htbp!]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=\linewidth]{E:/Thesis-Master/chap/image/fracture_animation_pipeline}
+  \includegraphics[width=\linewidth]{chap/image/fracture_animation_pipeline}
 
   \caption{\label{fig_fracture_animation_pipeline}
            碎裂仿真的基本流程。主要分为四个关键步骤，分别是物体离散、动力学更新、碎裂发生判断，拓扑更新。
@@ -146,7 +146,7 @@
 \begin{figure}[!htb]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=\linewidth]{E:/Thesis-Master/chap/image/fracture_model}
+  \includegraphics[width=\linewidth]{chap/image/fracture_model}
 
   \caption{\label{fracture_model}
            碎裂模型示意图。左边为Rankine Condition，右边为 Separation Tensor。图片分别取自\textcolor{blue}{(M\"{u}ller et al. )\parencite{Muller2004}} 和\textcolor{blue}{(O'Brien et al. )\parencite{OBrien1999}}。
@@ -181,7 +181,7 @@
 \begin{figure}[!htb]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=\linewidth]{E:/Thesis-Master/chap/image/explicit_method}
+  \includegraphics[width=\linewidth]{chap/image/explicit_method}
 
   \caption{\label{explicit_method}
            显示欧拉积分。随着仿真的进行，误差将很容易累积，从而导致仿真系统崩溃。粉色区域为绝对稳定区域。图片取自\mycite{Witkin}{1997}
@@ -233,7 +233,7 @@
 \begin{figure}[!htb]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=\linewidth]{E:/Thesis-Master/chap/image/implicit_method}
+  \includegraphics[width=\linewidth]{chap/image/implicit_method}
 
   \caption{\label{implicit_method}
            隐式欧拉积分。隐式欧拉积分理论上可认为是无条件稳定的，并且自带阻尼效果。图中粉色区域所示为绝对稳定区域。
@@ -319,7 +319,7 @@
 \begin{figure}[htbp!]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=\linewidth]{E:/Thesis-Master/chap/image/peridynamics_comparison}
+  \includegraphics[width=\linewidth]{chap/image/peridynamics_comparison}
 
   \caption{\label{peridynamics_comparison}
            不同动力学模型的作用域大小对比。左边为局域性理论，粒子只和直接邻域发生相互作用。右边为分子动力学理论，可认定作用半径无限大。而近场动力学位于两者之间，受邻域半径 $\delta$ 范围内的粒子影响。
@@ -363,7 +363,7 @@
 \begin{figure}[htbp!]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=0.5\linewidth]{E:/Thesis-Master/chap/image/pdm_local}
+  \includegraphics[width=0.5\linewidth]{chap/image/pdm_local}
 
   \caption{\label{pdm_local}
            局域性假设下的近场动力学。物质粒子 $\mathbf{x}$ 仅仅和$(k-l)$,$(k+l)$,$(k-m)$,$(k+m)$,$(k-n)$,和 $(k+n)$ 周围六个粒子相互作用。图片取自\mycite{Madenci}{2014}。
@@ -607,7 +607,7 @@ A = 4\omega_{(k)(j)}\left\{ad\frac{\mb{y}_{(j)} - \mb{y}_{(k)}}{|\mb{y}_{(j)} - 
 \begin{figure}[htbp!]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=0.5\linewidth]{E:/Thesis-Master/chap/image/pdm_isotropic_expansion}
+  \includegraphics[width=0.5\linewidth]{chap/image/pdm_isotropic_expansion}
 
   \caption{\label{pdm_isotropic_expansion}
            各向均匀膨胀下的三维物体。图片取自\mycite{Madenci}{2014}。
@@ -679,7 +679,7 @@ d = \frac{9}{4\pi\delta^4}.
 \begin{figure}[htbp!]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=0.5\linewidth]{E:/Thesis-Master/chap/image/pdm_simple_shear}
+  \includegraphics[width=0.5\linewidth]{chap/image/pdm_simple_shear}
 
   \caption{\label{pdm_simple_shear}
            简单剪切形变下的三维物体。图片取自\mycite{Madenci}{2014}。

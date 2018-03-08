@@ -126,7 +126,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
 \begin{figure}[!htb]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=\linewidth]{E:/Thesis-Master/chap/image/plasticity_model}
+  \includegraphics[width=\linewidth]{chap/image/plasticity_model}
 
   \caption{\label{plasticity_model}
            塑性模型示意图。其中图(a)为弹性形变，图(c)和图(c)为塑性形变，图(d)表示超出塑性形变总量限制。
@@ -137,14 +137,14 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
 \section{离散化框架及嵌网格策略}
 \label{discretization}
 
-尽管基于粒子的无网格方法在物理计算上较为灵活方便，但付出的代价就是需要重新产生网格来进行表示。不同于工程领域只关注于计算的准确性，图形学领域中的应用实际上更关注视觉效果，所以炫酷的视觉渲染输出尤为重要。纯粹使用基于粒子的方法来进行渲染在流体仿真中较为常见，例如可以使用基于屏幕空间（Screen-based）的渲染技术来取得不错的效果。但现有应用的视觉输出都是大部分采用基于网格（mesh）的渲染达到的，甚至对于高质量的流体渲染，通常的方式也是离线将粒子云使用相关算法来重建网格，如Marching Cube等。但重建网格的方式对于固体仿真尤其是碎裂仿真几乎是不可能，因为纯粹基于粒子位置信息很难对裂纹进行重建和表达。因此，更常见的方式是采用嵌网格的办法来对物体的形变和碎裂进行显示追踪，本文工作亦使用这种方式。
+尽管基于粒子的无网格方法在物理计算上较为灵活方便，但付出的代价就是需要重新产生网格来进行表示。不同于工程领域只关注于计算的准确性，图形学领域中的应用实际上更关注视觉效果，所以炫酷的视觉渲染输出尤为重要。纯粹使用基于粒子的方法来进行渲染在流体仿真中较为常见，例如可以使用基于屏幕空间（Screen-based）的渲染技术来取得不错的效果。但现有应用的视觉输出都是大部分采用基于网格（mesh）的渲染达到的，甚至对于高质量的流体渲染，通常的方式也是离线将粒子云使用相关算法来重建网格，如Marching Cube 等。但重建网格的方式对于固体仿真尤其是碎裂仿真几乎是不可能，因为纯粹基于粒子位置信息很难对裂纹进行重建和表达。因此，更常见的方式是采用嵌网格的办法来对物体的形变和碎裂进行显示追踪，本文工作亦使用这种方式。
 
 使用嵌网格方法的优点是网格的边界即代表物体的表面，因此在渲染时能够提供更多的细节，并且也比较容易反映仿真过程中物体的形变以及碎裂。在本文工作中，我们直接使用四面体网格来离散整个仿真物体，并且将仿真粒子置于四面体的几何中心，亦即每一个四面体即代表一个仿真粒子，如图\ref{embedded_mesh}所示。
 
 \begin{figure}[!htb]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=0.6\linewidth]{E:/Thesis-Master/chap/image/embedded_mesh}
+  \includegraphics[width=0.6\linewidth]{chap/image/embedded_mesh}
 
   \caption{\label{embedded_mesh}
            离散化框架与嵌网格。本文工作将仿真粒子置于四面体的中心，相邻的粒子共享一个四面体表面，并且粒子之间通过 bond 相连。
@@ -181,7 +181,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
 \begin{figure}[!htb]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=0.9\linewidth]{E:/Thesis-Master/chap/image/demo_pull_armadillo}
+  \includegraphics[width=0.9\linewidth]{chap/image/demo_pull_armadillo}
 
   \caption{\label{demo_pull_armadillo}
            Armadillo 各向同性线性形变实验。初始时 Armadillo 四肢被固定，并且其背部拉扯到一定位置，然后松开。
@@ -193,7 +193,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
 \begin{figure}[!htb]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=0.7\linewidth]{E:/Thesis-Master/chap/image/demo_impact_upside}
+  \includegraphics[width=0.7\linewidth]{chap/image/demo_impact_upside}
 
   \caption{\label{demo_impact_upside}
            弹性形变和塑性形变对比实验。不同材质的物质被以恒定速度运行球从上沿方向撞击。图(a)表示相同的初始状态。图(c)表示弹性物体被撞击，然后发生形变，但是在图(c)中，形变被恢复。图(d)表示物体被撞击后发生塑性形变，并且如图(e)所示，并不能恢复到原始位置。
@@ -205,7 +205,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
 \begin{figure}[!htb]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=0.7\linewidth]{E:/Thesis-Master/chap/image/compare_different_poisson_ratio}
+  \includegraphics[width=0.7\linewidth]{chap/image/compare_different_poisson_ratio}
 
   \caption{\label{compare_different_poisson_ratio}
            不同泊松比对比实验。泊松比越大，则不可压性质越明显。
@@ -217,7 +217,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
 \begin{figure}[!htb]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=0.7\linewidth]{E:/Thesis-Master/chap/image/demo_strip_vs_fem}
+  \includegraphics[width=0.7\linewidth]{chap/image/demo_strip_vs_fem}
 
   \caption{\label{demo_strip_vs_fem}
            不同硬度的长条弯曲实验。左边为本文方法所取得的效果，右图为 FEM 方法效果。可以看到，两者取得了几乎一致的效果。
@@ -229,7 +229,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
 \begin{figure}[!htb]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=0.9\linewidth]{E:/Thesis-Master/chap/image/demo_bar_oscillate_vs_fem}
+  \includegraphics[width=0.9\linewidth]{chap/image/demo_bar_oscillate_vs_fem}
 
   \caption{\label{demo_bar_oscillate_vs_fem}
            Bar 晃动实验。最左图为 FEM 线性模型，可以看到明显的不自然现象。中间两图分别为共旋线性模型和近场动力学方法，两者效果几乎完全一致。右图为误差图，基本上小于 10\%。
@@ -241,7 +241,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
 \begin{figure}[!htb]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=0.9\linewidth]{E:/Thesis-Master/chap/image/demo_bar_twist_vs_fem}
+  \includegraphics[width=0.9\linewidth]{chap/image/demo_bar_twist_vs_fem}
 
   \caption{\label{demo_bar_twist_vs_fem}
            Bar 扭曲实验。最左图为 FEM 线性模型，可以看到更为明显的不自然现象。中间两图分别为共旋线性模型和近场动力学方法，两者效果几乎完全一致。右图为误差图，基本上小于 10\%。
@@ -251,7 +251,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
 \begin{figure}[!htb]
   \centering
   \captionsetup{justification=centering}
-  \includegraphics[width=0.9\linewidth]{E:/Thesis-Master/chap/image/demo_armadillo_vs_fem}
+  \includegraphics[width=0.9\linewidth]{chap/image/demo_armadillo_vs_fem}
 
   \caption{\label{demo_armadillo_vs_fem}
            Armadillo 周期性振荡实验。左图为 FEM 方法，中图为近场动力学方法，右图为误差图。即使对于这种复杂的周期性振荡形变行为，两者仍然取得了非常一致的效果。
