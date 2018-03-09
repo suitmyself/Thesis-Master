@@ -1,7 +1,7 @@
 \begin{cabstract}
-在游戏、虚拟现实、电影等工业领域需求日益增长的背景下，基于物理的仿真一直是计算机图形学中的热点问题，但此问题虽愈发得到重视，却仍极具挑战，仍然在探索足够成熟的解决方案。物理仿真的难点主要在于物体本身行为的复杂多样性，以及仿真的稳定性、精确性、和仿真效率。本文基于近场动力学理论，主要针对弹塑性材料的形变和碎裂行为，提出了一种新的无网格动力学仿真框架。
+在游戏、虚拟现实、电影等工业领域需求日益增长的背景下，基于物理的仿真在计算机图形学领域的关注度不断提高。但由于此问题极具挑战，虽然愈发得到重视，但学术界至今仍然在探索更为成熟的解决方案。物理仿真的难点主要在于物体本身行为的复杂多样性，以及对仿真的稳定性、精确性、和仿真效率方面的高要求。本文基于近场动力学理论，主要针对弹塑性材料的形变和碎裂行为，提出了一种新的无网格动力学仿真框架。
 
-本文所阐述的近场动力学模型能够逼真地对弹塑性材料的形变行为进行表达，通过在实验上多样化材料的属性，然后和传统的 FEM 方法进行充分的对比，结果表明其在效果上能够取得和 FEM 共旋线性（Corotated Linear）模型几乎一致的效果，并且更具稳定性。同时，由于近场动力学本构模型使用的是积分形式的表述，其在仿真的精确性、实现的简单性、以及算法的并行化方面相对于常见的微分形式方法也更具优势。虽然近年 FEM 方法在碎裂仿真领域同样应用广泛，但其作为一种微分方法实际上将在不连续处失去意义。因此，在大形变以及碎裂情况下，往往需要对拓扑网格进行 remeshing 操作来提高网格质量，保证仿真的稳定性，其在实现上较为复杂，计算上较为耗时并且难以并行化。通过结合近场动力学本构模型以及本文所提出的碎裂模型，本文提出的动力学框架能够较好避免这一问题，实验表明本文所提出的方法能够高逼真度地模拟可扩展性材料以及脆性材料的碎裂行为。本文还通过引入各向异性矩阵核来对本构模型进行进一步的拓展，使之可模拟材料的各向异性属性。
+本文所阐述的近场动力学本构模型能够逼真地对弹塑性材料的形变行为进行表达，通过在实验上多样化材料的属性，然后和经典的 FEM 方法进行充分的对比。结果表明其在效果上能够取得和 FEM 共旋线性（Corotated Linear）模型几乎一致的效果，并且更具稳定性。同时，由于近场动力学本构模型使用的是积分形式的表述，其在仿真的精确性、实现的简单性、以及算法的并行化方面相对于传统的微分形式方法也更具优势。虽然近年 FEM 方法在碎裂仿真领域应用广泛，但其作为一种微分方法实际上将在不连续处失去意义。因此，在大形变以及碎裂情况下，往往需要对拓扑网格进行 remeshing 操作来提高网格质量，以保证仿真的稳定性。但其在实现上较为复杂，计算上较为耗时并且难以并行化。通过结合近场动力学本构模型以及本文所提出的碎裂模型，本文提出的动力学框架能够较好地避免这一问题，实验表明本文所提出的方法能够高逼真度地模拟脆性材料以及可扩展性材料的碎裂行为。本文还通过引入各向异性矩阵核来对本构模型进行了进一步的拓展，使之可模拟材料的各向异性属性。
 
 在几何表达方面，本工作使用四面体网格来对物体进行离散，并且提出了一种简单的嵌网格策略用于追踪材料刚性运动、形变及碎裂行为。通过此嵌网格策略，也更方便于进行后续物体间的碰撞检测和反应，以及最后的渲染输出工作。
 
@@ -11,7 +11,7 @@
 
 \begin{eabstract}
 Physically-based simulation has been gaining its importance in graphics with the purpose of meeting the growing demand from visual effects industry such as game, virtual reality, and movie.
-The main challenge of simulation lies in the diversity behaviors of materials, and the high requirements for simulation stability, accuracy, and efficiently.
+The main challenge of simulation lies in the diversity behaviors of materials, and high requirements for simulation stability, accuracy, and efficiently.
 Albeit a lot of works are devoted to this problem, there still lack elegant solutions due to its extreme complex patterns and behaviors, however.
 In this paper, we present a new peridynamics-based meshless framework for the deformation and fracture animation of elastoplastic objects.
 
@@ -22,11 +22,11 @@ The integral-based nature of peridynamics makes it trivial to model material dis
 Though recent years has witnessed the widely using of a FEM-based method for fracture modelling, in fact it would break down at discontinuity.
 To complement this for simulation stability, FEM usually require a quite daunting remeshing operation that is computational expensive and difficult to be processed in parallel,
 to refine the ill-conditioned tetrahedron arising from splitting or large deformation.
-By combining the peridynamics-based elastoplastic constitutive and fracture criterion, the framework could circumvent this drawback largely.
+By combining the peridynamics-based elastoplastic constitutive model and fracture criterion, the framework could circumvent this drawback largely.
 We demonstrate our method could realistically produce ductile fracture as well as brittle fracture.
-The constitutive model is further extended by incorporating into a anisotropy model to animate the anisotropic fracture behaviors.
+The constitutive model is further extended by incorporating  a anisotropy model to animate the anisotropic fracture behaviors.
 
-For geometry representation, We employ a tetrahedron mesh for setting peridynamics discretization and propose a simple strategy to explicitly track the deformation and fracture behaviors,
+For geometry representation, we employ a tetrahedron mesh for setting peridynamics discretization and propose a simple strategy to explicitly track the deformation and fracture behaviors,
 which could also be convenient to collision handling and rendering output in latter work.
 
 Our work is the first application of peridynamics in graphics that could create a wide range of material phenomena including elasticity, plasticity, and fracture.
