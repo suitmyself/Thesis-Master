@@ -153,7 +153,7 @@
           }
 \end{figure}
 
-最常用的碎裂模型包括 Rankine Condition，其基本原理是计算物质节点的主应力大小 $\mathbf{\sigma}_{max}$ 以及主应力方向 $\textbf{n}_{max}$，如果$\mathbf{\sigma}_{max}$ 超出阈值则认定碎裂发生，并且裂纹方向即为 $\textbf{n}_{max}$。 应用此碎裂模型的典型工作包括\textcolor{blue}{(M\"{u}ller et al.)\parencite{Muller2004}}。 但 Rankine Condition 的缺陷是即使某一方向受力较大，也会导致碎裂发生，而事实上碎裂是由相互抵消的力（挤压或者撕扯）的大小而决定的。因此，另一种常用的碎裂模型是 Separation Tensor\textcolor{blue}{(O'Brien et al.)\parencite{OBrien1999}} ，其计算的是相互抵消的应力最大的力大小和方向，因此克服了 Rankine Condition 的缺陷，不过其在计算上相对要较为复杂。两种碎裂模型的示意图如图\ref{fracture_model} 所示。
+最常用的碎裂模型包括 Rankine Condition，其基本原理是计算物质节点的主应力大小 $\mathbf{\sigma}_{max}$ 以及主应力方向 $\textbf{n}_{max}$，如果 $\mathbf{\sigma}_{max}$ 超出阈值则认定碎裂发生，并且裂纹方向即为 $\textbf{n}_{max}$。 应用此碎裂模型的典型工作包括\textcolor{blue}{(M\"{u}ller et al.)\parencite{Muller2004}}。 但 Rankine Condition 的缺陷是即使某一方向受力较大，也会导致碎裂发生，而事实上碎裂是由相互抵消的力（挤压或者撕扯）的大小而决定的。因此，另一种常用的碎裂模型是 Separation Tensor\textcolor{blue}{(O'Brien et al.)\parencite{OBrien1999}} ，其计算的是相互抵消的应力最大的力大小和方向，因此克服了 Rankine Condition 的缺陷，不过其在计算上相对要较为复杂。两种碎裂模型的示意图如图\ref{fracture_model} 所示。
 
 对于质点弹簧系统或者无网格中的方法，其作用关系一般是通过粒子与粒子之间的连接而决定的。因此，在碎裂模型上往往不涉及裂纹生长的方向，而是可以直接通过去除粒子之间的相互作用力来体现。在无网格框架中，最常用的碎裂模型是临界伸长量（critical stretch）。假设粒子之间通过弹簧相连，如果其伸长比例超过阈值，则断裂发生。本文所用的碎裂模型基于 critical stretch，但对其有所改进，具体在第三章详述。
 
@@ -163,7 +163,7 @@
 
 离散时间积分决定以何种方式来对系统中的状态进行更新。在大多数系统中，通常需要关心的状态更新是位置 $\textbf{x}$ 和速度 $\textbf{v}$。 对于无网格方法，$\textbf{x}$ 和 $\textbf{v}$ 被直接赋予到粒子之上。而对于有网格方法，虽然整体的物理动力学计算是基于网格中的单元体的，但实际上单元体在拓扑上仍然由节点/顶点连接而成，所以最后的计算结果仍然将会以加权平均的方式施加到各个顶点之上。
 
-假设某粒子 $i$ 所受内力为 $\fin$，所受外力为$\fex$，速度为$\vi$，位置为$\xii$，质量为 $m_i$。则根据速度的定义以及牛顿第二定律，得到：
+假设某粒子 $i$ 所受内力为 $\fin$，所受外力为 $\fex$，速度为 $\vi$，位置为 $\xii$，质量为 $m_i$。则根据速度的定义以及牛顿第二定律，得到：
 \begin{equation}
 \label{eq1}
 \left\{ \begin{array}{l}
@@ -171,7 +171,7 @@
 \frac{\textrm{d}\dot{\xii}}{\textrm{d}t} = \frac{\textrm{d}\vi}{\textrm{d}t}=\frac{\fin + \fex}{m_i}
 \end{array} \right.
 \end{equation}
-注意在上述公式中$\xii$和$\vi$都是关于时间的函数，离散时间积分是通过$\xii(t_0)$和$\vi(t_0)$来求解$\xii(t_0 + \Delta t)$ 和$\vi(t_0 + \Delta t)$的状态。
+注意在上述公式中 $\xii$ 和 $\vi$ 都是关于时间的函数，离散时间积分是通过 $\xii(t_0)$ 和 $\vi(t_0)$ 来求解 $\xii(t_0 + \Delta t)$ 和 $\vi(t_0 + \Delta t)$的状态。
 
 最常见的两种时间积分算法分别是显式欧拉积分(explicit Euler integration)和隐式欧拉积分(implicit Euler integration)。在下面小节中，我们将分别进行介绍。
 
@@ -208,13 +208,13 @@
 \noindent\fbox{
 \parbox{0.6\textwidth}{
 
-//initialization\\
+\textcolor{green}{//initialization}\\
 (1) \textbf{forall} particles $i$ \\
 (2) \qquad initialize $m_i$ and other necessary info\\
 (3) \qquad $\xii \leftarrow \xii(t_0)$\\
 (4) \qquad $\vi \leftarrow \vi(t_0)$\\
-(5) \textbf{endfor}\\\\
-//simulation loop\\
+(5) \textbf{endfor}\\
+\textcolor{green}{//simulation loop}\\
 (6) \textbf{loop}\\
 (7) \qquad \textbf{forall} particles $i$\\
 (8) \qquad \qquad calculate $\fin$ from constitutive laws\\
@@ -259,7 +259,7 @@
 \end{array} \right.
 \end{equation}
 
-其中 $\Delta \vi = \vi(t_0 + \Delta t) - \vi(t_0)$ 表示速度增量， $\Delta \xii = \xii(t_0 + \Delta t) - \xii(t_0)$ 表示位置增量，$\fin(t_0 \textcolor{red}{+ \Delta t})$ 和 $\fex(t_0 \textcolor{red}{+ \Delta t})$ 分别代表在 $t_0 + \Delta t$ 时刻的内力和外力。一般而言，$\fex(t_0 \textcolor{red}{+ \Delta t})$ 可以直接用 $\fex(t_0)$ 近似，然而$\fin(t_0 \textcolor{red}{+ \Delta t})$ 则不然。事实上，除非 $\fin(t_0 \textcolor{red}{+ \Delta t})$ 是线性函数，亦即所仿真材料是线性材料，否则在求解时其并非已知。因此如果 $\fin(t_0 \textcolor{red}{+ \Delta t})$ 是非线性函数（即非线性材料），则此时是无法对其进行精确求解的，只能对其进行一阶泰勒近似，亦即
+其中 $\Delta \vi = \vi(t_0 + \Delta t) - \vi(t_0)$ 表示速度增量， $\Delta \xii = \xii(t_0 + \Delta t) - \xii(t_0)$ 表示位置增量，$\fin(t_0 \textcolor{red}{+ \Delta t})$ 和 $\fex(t_0 \textcolor{red}{+ \Delta t})$ 分别代表在 $t_0 + \Delta t$ 时刻的内力和外力。一般而言，$\fex(t_0 \textcolor{red}{+ \Delta t})$ 可以直接用 $\fex(t_0)$ 近似，然而 $\fin(t_0 \textcolor{red}{+ \Delta t})$ 则不然。事实上，除非 $\fin(t_0 \textcolor{red}{+ \Delta t})$ 是线性函数，亦即所仿真材料是线性材料，否则在求解时其并非已知。因此如果 $\fin(t_0 \textcolor{red}{+ \Delta t})$ 是非线性函数（即非线性材料），则此时是无法对其进行精确求解的，只能对其进行一阶泰勒近似，亦即
 \begin{equation}
 \fin(\xii(t_0) + \Delta \xii(t_0),\vi(t_0)+\Delta \vi) = \fin(t_0) +
                                                          \sum\frac{\partial \fin(t_0)}{\partial \xj}\Delta \xj+
@@ -326,16 +326,16 @@
           }
 \end{figure}
 
-对于近场动力学模型，可以根据图\ref{peridynamics_comparison}中图作更为细致的形式化表述。具体而言，材质中的任何一个物质粒子 $\mathbf{x}$ 将会和其周边半径为 $\delta$ 内的粒子发生相互作用，这一半径 $\delta$ 被定义为\textbf{邻域半径}（horizon），而位于邻域半径 $\delta$ 之内的粒子被定义\textbf{邻域}（family），$H_\mathbf{x}$。对于连续性的材料，在离散化之前，邻域范围内的粒子数量可认定是无穷的。从用粒子来表示物体的观点来看，近场动力学的基本思想和其他无网格方法\textcolor{blue}{(M\"{u}ller et al.)\parencite{Muller2003}\parencite{Muller2003}}并无大差异，最大的区别在作用半径 $\delta$ 的引入，这也是近场动力学理论被认定为非局域性理论的原来。 \mycite{Silling}{2003}证明，当 $\delta$ 趋向于0 时，近场动力学模型将会退化为经典的连续介质力学。而当 $\delta$ 区域无穷大时，则会成为连续形式的分子动力学理论。
+对于近场动力学模型，可以根据图\ref{peridynamics_comparison}中图作更为细致的形式化表述。具体而言，材质中的任何一个物质粒子 $\mathbf{x}$ 将会和其周边半径为 $\delta$ 内的粒子发生相互作用，这一半径 $\delta$ 被定义为\textbf{邻域半径}（horizon），而位于邻域半径 $\delta$ 之内的粒子被定义\textbf{邻域}（family），$H_\mathbf{x}$。对于连续性的材料，在离散化之前，邻域范围内的粒子数量可认定是无穷的。从用粒子来表示物体的观点来看，近场动力学的基本思想和其他无网格方法\textcolor{blue}{(M\"{u}ller et al.)\parencite{Muller2003}\parencite{Muller2003}}并无大差异，最大的区别在作用半径 $\delta$ 的引入，这也是近场动力学理论被认定为非局域性理论的原由。 \mycite{Silling}{2003}证明，当 $\delta$ 趋向于0 时，近场动力学模型将会退化为经典的连续介质力学。而当 $\delta$ 区域无穷大时，则会成为连续形式的分子动力学理论。
 
 在近场动力学之前，几乎所有的动力学模型都采用的是微分形式的本构方程（governing function）。最为典型的就是在连续介质力学理论中，本构方程一般使用如下形式，
 
 \begin{equation}
 \label{fem_governing_function}
-\rho\ddot{\mathbf{u}}(\mathbf{x}) = \nabla\cdot\delta(\mathbf{x})+\mathbf{b}(\mathbf{x})
+\rho\ddot{\mathbf{u}}(\mathbf{x}) = \nabla\cdot\sigma(\mathbf{x})+\mathbf{b}(\mathbf{x})
 \end{equation}
 
-其中 $\rho$ 表示粒子的质量密度。$\ddot{\mathbf{u}}$ 为向量，表示粒子的位移。$\mathbf{b}$ 表示粒子所受外力，一般包括重力或者由碰撞导致的外力等。类似的符号表示将同样应用于后续近场动力学的本构方程，后面将不再赘述。在方程\ref{fem_governing_function}中，最为关键的物理量是 $\nabla\cdot\delta$，即是二阶应力张量 $\delta$ 的散度微分，其表示单位体积物体所受的力（力密度）。如前面章节\ref{constitutive_model} 所述， $\delta$ 的计算尤为关键，其包含物体所有的本构信息。在此，需要尤其注意的是，$\nabla\cdot\delta$ 是关于空间位置的偏微分，而空间微分在不连续之处并不能很好定义。在物体边界以及碎裂发生之处，空间微分很容易导致奇异值问题。因此在基于连续介质力学的离散框架（FEM）以及相关工作中，往往需要额外的工作来特殊对待碎裂问题，例如\textcolor{blue}{(O'Brien et al. 1999)\parencite{OBrien1999}},\textcolor{blue}{(O'Brien et al. 2002)\parencite{OBrien2002}}中的 remeshing 操作。事实上，这一问题并不仅仅存在于有网格方法，\mycite{Madenci}{2014} 指出，几乎所有的无网格方法使用的都是微分形式的本构方程，因而都不能避免此问题。
+其中 $\rho$ 表示粒子的质量密度。$\ddot{\mathbf{u}}$ 为向量，表示粒子的位移。$\mathbf{b}$ 表示粒子所受外力，一般包括重力或者由碰撞导致的外力等。类似的符号表示将同样应用于后续近场动力学的本构方程，后面将不再赘述。在方程\ref{fem_governing_function} 中，最为关键的物理量是 $\nabla\cdot\sigma$，即是二阶应力张量 $\sigma$ 的散度微分，其表示单位体积物体所受的力（力密度）。如前面章节\ref{constitutive_model} 所述， $\sigma$ 的计算尤为关键，其包含物体所有的本构信息。在此，需要尤其注意的是，$\nabla\cdot\sigma$ 是关于空间位置的偏微分，而空间微分在不连续之处并不能很好定义。在物体边界以及碎裂发生之处，空间微分很容易导致奇异值问题。因此在基于连续介质力学的离散框架（FEM）以及相关工作中，往往需要额外的工作来特殊对待碎裂问题，例如\textcolor{blue}{(O'Brien et al. 1999)\parencite{OBrien1999}},\textcolor{blue}{(O'Brien et al. 2002)\parencite{OBrien2002}}中的 remeshing 操作。事实上，这一问题并不仅仅存在于有网格方法，\mycite{Madenci}{2014} 指出，几乎所有的无网格方法使用的都是微分形式的本构方程，因而都不能避免此问题。
 
 不同于以往方法，近场动力学使用的是积分形式的动力学表述，这也是其另一大特征。由于是积分形式，近场动力学的本构方程在不连续处将仍然保持良好定义，并且材质的损伤本身就是模型的一部分。这一优势使得近场动力学非常适合处理不连续问题，尤为是碎裂现象。具体而言，近场动力学中关于物质粒子 $\mathbf{x}$的本构方程可以写为
 
@@ -344,7 +344,7 @@
 \label{pdm_governing_function}
 \end{equation}
 
-其中$\rho, \mathbf{u}, \mathbf{b}$ 的含义同式\ref{fem_governing_function}一致。$\mathbf{x}'$ 表示属于 $\mathbf{x}$ 的邻域 $H_\mathbf{x}$ 范围内另外一个物质粒子。$\mathbf{T}\langle\mathbf{x}',\mathbf{x}\rangle$ 和 $\mathbf{T}\langle\mathbf{x},\mathbf{x}'\rangle$ 是两个关键变量，其包含了材质的所有本构信息。$\mathbf{T}\langle\mathbf{x}',\mathbf{x}\rangle$ 表示粒子 $\mathbf{x}'$ 施加给粒子 $\mathbf{x}$ 的内力，而$\mathbf{T}\langle\mathbf{x},\mathbf{x}'\rangle$ 则相反，表示粒子 $\mathbf{x}$ 施加给粒子 $\mathbf{x}'$ 的内力。注意如章节\ref{pdm_history}所述，对于 state-based 模型，这两个变量并不一定相同，但必须同时出现在本构方程中以遵循牛顿第三定律，这一策略类似于 SPH 方法\textcolor{blue}{(M\"{u}ller et al. 2003)\parencite{Muller2003}}。尖括号$\langle\cdot\rangle$ 符号表示关于 $H_\mathbf{x}$ 的函数，其在\mycite{Silling}{2007}中被定义为\textbf{状态}（state）。需要尤其注意的是本构方程中的积分符号 $\int_{H_\mathbf{x}}$，这是近场动力学模型区别其他理论最根本上的不同。可以看出，整个方程是基于粒子的位移 $\mathbf{u}$，而不是基于位移的空间微分的，因此也使得其对于不连续问题的处理更加方便以及稳定。在粒子离散框架下，关于邻域 $H_\mathbf{x}$ 的连续积分可以进一步用粒子的累加和来表示，即，
+其中 $\rho, \mathbf{u}, \mathbf{b}$ 的含义同式\ref{fem_governing_function}一致。$\mathbf{x}'$ 表示属于 $\mathbf{x}$ 的邻域 $H_\mathbf{x}$ 范围内另外一个物质粒子。$\mathbf{T}\langle\mathbf{x}',\mathbf{x}\rangle$ 和 $\mathbf{T}\langle\mathbf{x},\mathbf{x}'\rangle$ 是两个关键变量，其包含了材质的所有本构信息。$\mathbf{T}\langle\mathbf{x}',\mathbf{x}\rangle$ 表示粒子 $\mathbf{x}'$ 施加给粒子 $\mathbf{x}$ 的内力，而 $\mathbf{T}\langle\mathbf{x},\mathbf{x}'\rangle$ 则相反，表示粒子 $\mathbf{x}$ 施加给粒子 $\mathbf{x}'$ 的内力。注意如章节\ref{pdm_history}所述，对于 state-based 模型，这两个变量并不一定相同，但必须同时出现在本构方程中以遵循牛顿第三定律，这一策略类似于 SPH 方法\textcolor{blue}{(M\"{u}ller et al. 2003)\parencite{Muller2003}}。尖括号$\langle\cdot\rangle$ 符号表示关于 $H_\mathbf{x}$ 的函数，其在\mycite{Silling}{2007}中被定义为\textbf{状态}（state）。需要尤其注意的是本构方程中的积分符号 $\int_{H_\mathbf{x}}$，这是近场动力学模型区别其他理论最根本上的不同。可以看出，整个方程是基于粒子的位移 $\mathbf{u}$，而不是基于位移的空间微分的，因此也使得其对于不连续问题的处理更加方便以及稳定。在粒子离散框架下，关于邻域 $H_\mathbf{x}$ 的连续积分可以进一步用粒子的累加和来表示，即，
 
 \begin{equation}
 \rho\ddot{\mathbf{u}}(\mathbf{x}) = \sum_{\mathbf{x}'\in H_\mathbf{x}}[\mathbf{T}\langle\mathbf{x}',\mathbf{x}\rangle - \mathbf{T}\langle\mathbf{x},\mathbf{x}'\rangle]V_{\mathbf{x}'}+\mathbf{b}(\mathbf{x}),
@@ -358,7 +358,7 @@
 在章节\ref{pdm_basic_feature}中，公式\ref{pdm_governing_function_discrete}描述了近场动力学的基本形式和本构方程。其中两个重要变量分别是 $\mathbf{T}\langle\mathbf{x}',\mathbf{x}\rangle$ 和 $\mathbf{T}\langle\mathbf{x},\mathbf{x}'\rangle$，其蕴含了材质的本构信息，需要以更为形式化的方式来进行表述。一般而言，$\mathbf{T}\langle\cdot\rangle$ 的具体形式需要通过发掘材质属性，以及物理规律推导来获得，但更为合理并且便捷的方式便是建立在已有的经典连续介质力学基础之上，然后将两个理论进行等效。不过由于连续介质力学是局域性的理论，因此我们首先需要对近场动力学作局域性假设。
 
 \subsubsection{局域性假设}
-在极限情况下，亦即当$\delta$ 趋于0时，可认为物质粒子 $\mathbf{x}$ 仅和其直接邻居发生相互作用。如图所示，标记为 $k$ 的粒子只和周围六个粒子 $(k-l)$,$(k+l)$,$(k-m)$,$(k+m)$,$(k-n)$,和$(k+n)$ 存在力作用。这和经典连续介质力学一致，参见\mycite{Bonet}{2008}。
+在极限情况下，亦即当 $\delta$ 趋于0时，可认为物质粒子 $\mathbf{x}$ 仅和其直接邻居发生相互作用。如图所示，标记为 $k$ 的粒子只和周围六个粒子 $(k-l)$,$(k+l)$,$(k-m)$,$(k+m)$,$(k-n)$,和$(k+n)$ 存在力作用。这和经典连续介质力学一致，参见\mycite{Bonet}{2008}。
 
 \begin{figure}[htbp!]
   \centering
@@ -376,7 +376,7 @@
 = \sum_{j=k-l,k+l,k-m,k+m,k-n,k+n}(\mb{t}_{(k)(j)}-\mb{t}_{(j)(k)})V_{(j)} + \mb{b}_{(k)}
 \label{pdm_local_governing_function}
 \end{equation}
-这里 $\mb{t}_{(k)(j)}$ 表示物质粒子 $j$ 施加给物质粒子 $k$的内力密度，而$\mb{t}_{(j)(k)}$ 表示物质粒子 $k$ 施加给物质粒子 $j$的内力密度。根据中心差分公式，经典连续介质力学中的本构方程（即公式\ref{fem_governing_function}）可以写成分量形式，以 $x$ 分量为例，有
+这里 $\mb{t}_{(k)(j)}$ 表示物质粒子 $j$ 施加给物质粒子 $k$的内力密度，而 $\mb{t}_{(j)(k)}$ 表示物质粒子 $k$ 施加给物质粒子 $j$ 的内力密度。根据中心差分公式，经典连续介质力学中的本构方程（即公式\ref{fem_governing_function}）可以写成分量形式，以 $x$ 分量为例，有
 
 \begin{equation}
 \begin{aligned}
@@ -457,9 +457,9 @@
 
 对于一般模型的超弹性材质的推导步骤总结如下：
 \begin{enumerate}
-  \item 使用内力密度 $\mathbf{t}$ 来表示应变能量密度 $W$。通常而言，在连续介质力学中，应变能量密度通常通过应力张量 $\delta$ 来进行表示，或者可以方便地转换为此种形式。然后通过应力张量 $\delta$ 和内力密度 $\mathbf{t}$ 的关系（即\ref{eq:7} $\sim$ \ref{eq:10}），我们就可以直接建立应变能量密度 $W$ 和$\mathbf{t}$之间的联系。
+  \item 使用内力密度 $\mathbf{t}$ 来表示应变能量密度 $W$。通常而言，在连续介质力学中，应变能量密度通常通过应力张量 $\delta$ 来进行表示，或者可以方便地转换为此种形式。然后通过应力张量 $\delta$ 和内力密度 $\mathbf{t}$ 的关系（即\ref{eq:7} $\sim$ \ref{eq:10}），我们就可以直接建立应变能量密度 $W$ 和 $\mathbf{t}$ 之间的联系。
   \item 将 $\mathbf{t}$ （方程 \ref{eq:12}和\ref{eq:13}）代入到能量密度 $W$ 的表达式，并根据式 \ref{eq:11} 执行微分操作，获得力密度 $\mathbf{t}$ 的具体形式。
-  \item 在多种不同的简单受力情况下，通过比较连续介质力学中的应变能量密度以及近场动力学中对应的部分来确定相应的材质参数。选择的受力情况一般应尽量简单，并且是可以在连续介质力学和近场动力学中进行解析计算的。最后根据两种理论算得的能量应该相等，确定近场动力学中的材质参数。
+  \item 在多种不同的简单受力情况下，通过比较连续介质力学中的应变能量密度以及近场动力学中对应的能量密度来确定相应的材质参数。选择的受力情况一般应尽量简单，并且是可以在连续介质力学和近场动力学中进行解析计算的。最后根据两种理论算得的能量应该相等，确定近场动力学中的材质参数。
 \end{enumerate}
 
 本文下面将通过线性弹性模型的推导来具体展示这一流程，这也是本文工作所用动力学模型。根据上述步骤，还可以推得其他超弹性模型在近场动力学理论中的表示，例如 FEM 中常用的不可压 Neo-Hookean 材质模型 \mycite{Bang}{2016}。
@@ -467,7 +467,7 @@
 \subsubsection{线性弹性模型推导}
 \noindent{\textbf{步骤1：使用内力密度表达应力能量密度}
 
-对于连续介质力学中的各向同性线性弹性材料，对于物质粒子 $k$，应变能量密度 $W(k)$ 的具体形式可写为
+对于连续介质力学中的各向同性线性弹性材料，关于物质粒子 $k$，应变能量密度 $W(k)$ 的具体形式可写为
 
 \begin{equation}
 W_{(k)} = \frac{\kappa}{2}\theta_{(k)}^2+\left[\frac{1}{4\mu}(\sigma_{xx(k)}^2+\sigma_{yy(k)}^2+\sigma_{zz(k)}^2)
@@ -496,7 +496,7 @@ W_{(k)} =& \frac{\kappa}{2}\theta_{(k)}^2 -\frac{3\kappa^2}{4\mu}\theta_{(k)}^2 
 \label{eq:16}
 \end{equation}
 
-在上式中，关于应力张量的每一项被分别对应于粒子 $k$ 的六个直接邻居$(k-l)$,$(k+l)$,$(k-m)$,$(k+m)$,$(k-n)$ 和 $(k+n)$。 使用式 \ref{eq:10} 建立的关系，可得
+在上式中，关于应力张量的每一项被分别对应于粒子 $k$ 的六个直接邻居 $(k-l)$,$(k+l)$,$(k-m)$,$(k+m)$,$(k-n)$ 和 $(k+n)$。 使用式 \ref{eq:10} 建立的关系，即可得
 
 \begin{equation}
 \begin{aligned}
@@ -517,7 +517,7 @@ W_{(k)} =& (\frac{\kappa}{2} -\frac{3\kappa^2}{4\mu})\theta_{(k)}^2 \\
 \label{eq:18}
 \end{equation}
 
-将式 \ref{eq:9} 代入上述方程, 则可以获得$\theta_{(k)}$关于$\mb{t}_{(k)}$的具体形式
+将式 \ref{eq:9} 代入上述方程, 则可以获得 $\theta_{(k)}$ 关于 $\mb{t}_{(k)}$ 的具体形式
 
 \begin{equation}
 \theta_{(k)} = \frac{1}{3\kappa}\left(\sum_{\substack {j=k-l,k+l,\\ \quad k-m,k+m,\\ \quad k-n,k+n}}(\mb{t}_{(k)(j)}\cdot(\mb{x}_{(j)}-\mb{x}_{(k)})V_{(j)})\right).
@@ -528,7 +528,7 @@ W_{(k)} =& (\frac{\kappa}{2} -\frac{3\kappa^2}{4\mu})\theta_{(k)}^2 \\
 
 \noindent{\textbf{步骤2：获得力密度具体形式}
 
-对于各向同性的线性弹性材料，物质粒子间的内力为线性关系，也就是其大小和 bond 之间的伸长度呈正比例关系。因此，内力密度$\mb{t}_{(k)(j)}$可以写为更为具体的形式
+对于各向同性的线性弹性材料，物质粒子间的内力为线性关系，也就是其大小和 bond 之间的伸长度呈正比例关系。因此，内力密度 $\mb{t}_{(k)(j)}$ 可以写为更为具体的形式
 
 \begin{equation}
 \mb{t}_{(k)(j)} = \frac{1}{2}cs_{(k)(j)}\frac{\mb{y}_{(j)} - \mb{y}_{(k)}}{|\mb{y}_{(j)} - \mb{y}_{(k)}|},
@@ -564,7 +564,7 @@ W_{(k)} = a\theta_{(k)}^2 + \sum_{\substack {j=k-l,k+l,\\ \quad k-m,k+m,\\ \quad
 \theta_{(k)} = d\left(\sum_{\substack {j=k-l,k+l,\\ \quad k-m,k+m,\\ \quad k-n,k+n}}\left(s_{(k)(j)}\frac{\mb{y}_{(j)} - \mb{y}_{(k)}}{|\mb{y}_{(j)} - \mb{y}_{(k)}|}\cdot(\mb{x}_{(j)}-\mb{x}_{(k)})V_{(j)}\right)\right).
 \label{eq:25}
 \end{equation}
-其中$a$, $b$ 和 $d$ 为未决的动力学参数。
+其中 $a$, $b$ 和 $d$ 为未决的动力学参数。
 
 到目前为止，本文讨论的仍然在局域性假设下的近场动力学模型推导。可以通过直接扩充其作用半径，将这一模型应用到非局域的情形下，即
 \begin{equation}
@@ -632,7 +632,7 @@ W_{(k)} = \frac{9}{2}\kappa\zeta^2\\
 \label{eq:34}
 \end{equation}
 
-并且形变后的相对位置可用未形变空间的相对位置表示为
+并且形变后的相对位置可用未形变空间的相对位置表示。即
 
 \begin{equation}
 |\mb{y}_{(j)} - \mb{y}_{(k)}| = (1+\zeta)|\mb{x}_{(j)} - \mb{x}_{(k)}|.
@@ -662,7 +662,7 @@ W_{(k)} =& a\theta_{(k)}^2
 \label{eq:37}
 \end{equation}
 
-其中$(\xi,\theta,\phi)$ 为球坐标。将方程 \ref{eq:36},\ref{eq:37}同方程\ref{eq:33},\ref{eq:34}进行对比，则可以得到两个重要的关系式：
+其中 $(\xi,\theta,\phi)$ 为球坐标。将方程 \ref{eq:36}, \ref{eq:37}同方程\ref{eq:33}, \ref{eq:34}进行对比，则可以得到两个重要的关系式：
 
 \begin{equation}
 9a + \pi b\delta^5 = \frac{9}{2}\kappa
@@ -701,7 +701,7 @@ d = \frac{9}{4\pi\delta^4}.
 \label{eq:42}
 \end{equation}
 
-连续介质力学下的$W_{(k)}$ 和 $\theta_{(k)}$则可以直接写为
+连续介质力学下的 $W_{(k)}$ 和 $\theta_{(k)}$ 则可以直接写为
 
 \begin{equation}
 W_{(k)} = \frac{1}{2}\mu\zeta^2\\
@@ -712,7 +712,7 @@ W_{(k)} = \frac{1}{2}\mu\zeta^2\\
 \label{eq:44}
 \end{equation}
 
-近场动力学下的$W_{(k)}$的值仍然需要通过半径为 $\delta$ 的圆球内进行积分来计算。即
+近场动力学下的 $W_{(k)}$ 的值仍然需要通过半径为 $\delta$ 的圆球内进行积分来计算。即
 \begin{equation}
 \begin{aligned}
 W_{(k)} =& b\sum_{j=1}^{N}\omega_{(k)(j)}(s_{(k)(j)}|\mb{x}_{(j)}-\mb{x}_{(k)}|V_{(j)})\cdot(s_{(k)(j)}|\mb{x}_{(j)}-\mb{x}_{(k)}|V_{(j)})\\
