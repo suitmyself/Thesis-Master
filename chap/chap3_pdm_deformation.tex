@@ -37,7 +37,7 @@ A =4\omega_{ij}\left\{a_1d\frac{\mb{y}_j-\mb{y}_i}{|\mb{y}_j-\mb{y}_i|}\cdot\fra
 \begin{equation}
 \begin{aligned}
 e^d_{ij} \equiv& e_{ij} + \frac{a_2d}{b}\frac{\mb{y}_j-\mb{y}_i}{|\mb{y}_j-\mb{y}_i|}\cdot\frac{\mb{x}_j-\mb{x}_i}{|\mb{x}_j-\mb{x}_i|}\theta_i\\
-                  =& e_{jk} - \frac{\delta}{4}\frac{\mb{y}_j-\mb{y}_i}{|\mb{y}_j-\mb{y}_i|}\cdot\frac{\mb{x}_j-\mb{x}_i}{|\mb{x}_j-\mb{x}_i|}\theta_i
+                  =& e_{ij} - \frac{\delta}{4}\frac{\mb{y}_j-\mb{y}_i}{|\mb{y}_j-\mb{y}_i|}\cdot\frac{\mb{x}_j-\mb{x}_i}{|\mb{x}_j-\mb{x}_i|}\theta_i
 \end{aligned}
 \label{deviatoric_extension}
 \end{equation}
@@ -137,7 +137,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
 \section{离散化框架及嵌网格策略}
 \label{discretization}
 
-尽管基于粒子的无网格方法在物理计算上较为灵活方便，但付出的代价就是需要重新产生网格来进行表示。不同于工程领域只关注于计算的准确性，图形学领域中的应用实际上更关注视觉效果，所以炫酷的视觉渲染输出尤为重要。纯粹使用基于粒子的方法来进行渲染在流体仿真中较为常见，例如可以使用基于屏幕空间（Screen-based）的渲染技术来取得不错的效果。但现有应用的视觉输出大部分都是采用基于网格（mesh）的渲染达到的，甚至对于高质量的流体渲染，通常的方式也是离线将粒子云使用相关算法来重建网格，如 Marching Cube 等。但重建网格的方式对于固体仿真尤其是碎裂仿真几乎是不可能的，因为纯粹基于粒子位置信息很难对裂纹进行重建和复原。因此，更常见的方式是采用嵌网格的办法来对物体的形变和碎裂进行显式追踪，本文工作亦使用这种方式。
+尽管基于粒子的无网格方法在物理计算上较为灵活方便，但付出的代价就是需要重新产生网格来进行表示。不同于工程领域侧重于计算的准确性，图形学领域中的应用实际上更关注视觉效果，所以炫酷的视觉渲染输出尤为重要。纯粹使用基于粒子的方法来进行渲染在流体仿真中较为常见，例如可以使用基于屏幕空间（Screen-based）的渲染技术来取得不错的效果。但现有应用的视觉输出大部分都是采用基于网格（mesh）的渲染达到的，甚至对于高质量的流体渲染，通常的方式也是离线将粒子云使用相关算法来重建网格，如 Marching Cube 等。但重建网格的方式对于固体仿真尤其是碎裂仿真几乎是不可能的，因为纯粹基于粒子位置信息很难对裂纹进行重建和复原。因此，更常见的方式是采用嵌网格的办法来对物体的形变和碎裂进行显式追踪，本文工作亦使用这种方式。
 
 使用嵌网格方法的优点是网格的边界即代表物体的表面，因此在渲染时能够提供更多的细节，并且也比较容易反映仿真过程中物体的形变以及碎裂。在本文工作中，我们直接使用四面体网格来离散整个仿真物体，并且将仿真粒子置于四面体的几何中心，亦即每一个四面体即代表一个仿真粒子，如图\ref{embedded_mesh}所示。
 
@@ -200,7 +200,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
           }
 \end{figure}
 
-图\ref{compare_different_poisson_ratio}则是对弹性材料（伸长的 beam）不同泊松比的对比实验。在 bond based 模型中，泊松比被固定为 0.25，如\mycite{Levine}{2014}。而使用基于 state based的模型能够破除这一限制，在材质属性的表达能力上达到同连续介质理论同等的水平。
+图\ref{compare_different_poisson_ratio}则是对弹性材料（伸长的 beam）不同泊松比的对比实验。在 bond-based 模型中，泊松比被固定为 0.25，如\mycite{Levine}{2014}。而使用基于 state-based的模型能够破除这一限制，在材质属性的表达能力上达到同连续介质理论同等的水平。
 
 \begin{figure}[!htb]
   \centering

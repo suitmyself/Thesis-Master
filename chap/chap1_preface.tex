@@ -58,7 +58,7 @@
 最开始的近场动力学理论\mycite{Silling}{2000} 也被称为 bond-based 近场动力学（bond-based peridynamics）。在其表述中，物质中的具有相互作用的物质点对通过约束（bond）相连，相互之间施加的作用力只与彼此相关，并且具有相同的力大小。因此，基于 bond-based 近场动力学的系统实际上可认作是一种质点弹簧系统。 bond-based 近场动力学最大的缺陷是对于各向同性材料，泊松比（Poisson' ratio）被固定为 0.25，这在很大程度上限制了材料的多样性。此外，bond-based 近场动力学不能对体积膨胀和剪切形变进行区分，且无法保证塑性不可压条件，或进一步结合已有的材质模型。所以，bond-based 近场动力学模型虽然在实现上比较简单，但其使用其实是相对受限的。在图形学领域，\mycite{Levine}{2014}第一次使用这一理论在对各向同性的脆性材料进行碎裂仿真。而本文工作，则呈现了一个能模拟弹塑性材料和各向异性材料，囊括形变、脆性碎裂、可延展性碎裂等物理现象在内的完整框架。
 
 为解决 bond-based 模型中存在的问题，\mycite{Silling}{2007} 和 \mycite{Emmrich}{2013}进一步对理论进行完善，提出了所谓的 state-based 近场动力学。state-based 近场动力学是一个更为通用的模型，其移除了原有模型关于 0.25 的泊松比限制，并且物质点对之间相互给予的作用力也并不一定相同，甚至不一定沿质点之间的连线方向。state-based 模型在材料属性的表达能力上已经与经典连续介质理论具有可比性，因此被工程领域广为采用，其中包括用来做多尺度材质模拟的\mycite{Askari}{2008},\mycite{Silling}{2014a}，和用来进行碎裂模拟的\mycite{silling}{2014b},\mycite{Askari}{2006},\mycite{Silling}{2010} 等。
-state-based 近场动力学模型可以进一步分为 Ordinary state-based 和 Non-ordinary state based 模型。其中在Ordinary state based 模型物质点对之间的作用力沿两者直线方向，因此在角动量守恒上能够自动得到满足，而Non-ordinary state based 作用力可沿其他方向，但仍然需要整体遵守角动量守恒定律。关于三种不同模型的示意，如图\ref{peridynamics_models}所示：
+state-based 近场动力学模型可以进一步分为 Ordinary state-based 和 Non-ordinary state-based 模型。其中在Ordinary state-based 模型物质点对之间的作用力沿两者直线方向，因此在角动量守恒上能够自动得到满足，而Non-ordinary state-based 作用力可沿其他方向，但仍然需要整体遵守角动量守恒定律。关于三种不同模型的示意，如图\ref{peridynamics_models}所示：
 
 \begin{figure}[htbp!]
   \centering
