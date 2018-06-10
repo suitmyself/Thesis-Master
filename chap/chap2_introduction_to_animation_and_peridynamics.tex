@@ -54,14 +54,14 @@
 =
 \left(
   \begin{array}{ccc}
-    \frac{\partial\boldmath{x}}{\X}& \frac{\partial\boldmath{x}}{\Y} & \frac{\partial\boldmath{x}}{\Z} \\
-    \frac{\partial\boldmath{y}}{\X}& \frac{\partial\boldmath{y}}{\Y} & \frac{\partial\boldmath{y}}{\Z} \\
-    \frac{\partial\boldmath{z}}{\X}& \frac{\partial\boldmath{z}}{\Y} & \frac{\partial\boldmath{z}}{\Z} \\
+    \frac{\partial\boldmath{x}}{\partial\X}& \frac{\partial\boldmath{x}}{\partial\Y} & \frac{\partial\boldmath{x}}{\partial\Z} \\
+    \frac{\partial\boldmath{y}}{\partial\X}& \frac{\partial\boldmath{y}}{\partial\Y} & \frac{\partial\boldmath{y}}{\partial\Z} \\
+    \frac{\partial\boldmath{z}}{\partial\X}& \frac{\partial\boldmath{z}}{\partial\Y} & \frac{\partial\boldmath{z}}{\partial\Z} \\
   \end{array}
 \right)
 \end{equation}
 
-其中$\X, \Y, \Z$表示的是形变之前的位置，亦即参考/未形变空间（reference/undeformed space）的位置。$\boldmath{x}, \boldmath{y}, \boldmath{z}$ 则表示形变后的位置，亦即在世界空间（world space）的位置。在形变梯度的基础上，可以进一步定义格林应变张量 $\E \in \textbf{R}^{3\times3}$（Green strain tensor），即
+其中 $\X, \Y, \Z$ 表示的是形变之前的位置，亦即参考/未形变空间（reference/undeformed space）的位置。$\boldmath{x}, \boldmath{y}, \boldmath{z}$ 则表示形变后的位置，亦即在世界空间（world space）的位置。在形变梯度的基础上，可以进一步定义格林应变张量 $\E \in \textbf{R}^{3\times3}$（Green strain tensor），即
 
 \begin{equation}
 \E = \frac{1}{2}\left(\F^{T}\F - \textbf{I}\right)
@@ -134,7 +134,7 @@
                \end{array}
              \right)
 \end{equation}
-上式中$\kappa$ 和 $\mu$ 分别表示体积模量和剪切模量。
+上式中 $\kappa$ 和 $\mu$ 分别表示体积模量和剪切模量。
 
 在给定离散框架下（如 FEM），则可以相应计算形变梯度 $\textbf{F}$，进而获得应力张量 $\mathbf{\sigma}$，最终可以通过加权平均的方式算得作用力，并施加到离散模型的各个节点之上。
 
@@ -155,7 +155,7 @@
 
 最常用的碎裂模型包括 Rankine Condition，其基本原理是计算物质节点的主应力大小 $\mathbf{\sigma}_{max}$ 以及主应力方向 $\textbf{n}_{max}$，如果 $\mathbf{\sigma}_{max}$ 超出阈值则认定碎裂发生，并且裂纹方向即为 $\textbf{n}_{max}$。 应用此碎裂模型的典型工作包括\textcolor{blue}{(M\"{u}ller et al.)\parencite{Muller2004}}。 但 Rankine Condition 的缺陷是即使某一方向受力较大，也会导致碎裂发生，而事实上碎裂是由相互抵消的力（挤压或者撕扯）的大小而决定的。因此，另一种常用的碎裂模型是 Separation Tensor\textcolor{blue}{(O'Brien et al.)\parencite{OBrien1999}} ，其计算的是相互抵消的应力最大的力大小和方向，因此克服了 Rankine Condition 的缺陷，不过其在计算上相对要较为复杂。两种碎裂模型的示意图如图\ref{fracture_model} 所示。
 
-对于质点弹簧系统或者无网格中的方法，其作用关系一般是通过粒子与粒子之间的连接而决定的。因此，在碎裂模型上往往不涉及裂纹生长的方向，而是可以直接通过去除粒子之间的相互作用力来体现。在无网格框架中，最常用的碎裂模型是临界伸长量（critical stretch）。假设粒子之间通过弹簧相连，如果其伸长比例超过阈值，则断裂发生。本文所用的碎裂模型基于 critical stretch，但对其有所改进，具体在第三章详述。
+对于质点弹簧系统或者无网格中的方法，其作用关系一般是通过粒子与粒子之间的连接而决定的。因此，在碎裂模型上往往不涉及裂纹生长的方向，而是可以直接通过去除粒子之间的相互作用力来体现。在无网格框架中，最常用的碎裂模型是临界伸长量（critical stretch）。假设粒子之间通过弹簧相连，如果其伸长比例超过阈值，则断裂发生。本文所用的碎裂模型基于 critical stretch，但对其有所改进，具体在第四章详述。
 
 \section{离散时间积分}
 \label{numerical_method}
