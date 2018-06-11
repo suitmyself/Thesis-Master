@@ -16,9 +16,9 @@
 
 \subsection{弹塑性形变仿真}
 
-在图形学领域，最开始的塑性形变体仿真可以追溯到 \mycite{Terzopoulos}{1988}。随后 \textcolor{blue}{(O'Brien et al. 2002)\parencite{OBrien2002}} 在 FEM 框架中引入了一个加法形式的塑性模型来模拟可延展性材料的碎裂。在其模型中，应变张量被分解为两个部分：弹性形变和塑性形变。\textcolor{blue}{(M\"{u}ller et al. 2004)\parencite{Muller2004}} 同样采用这一模型用来模拟物体的塑性行为，但这一工作是在基于粒子的无网格框架进行的。随后\mycite{Irving}{2004}在其工作中提出了一个关于塑性的乘法模型，并指出其能更好的处理塑性行为。不同于加法模型，乘法模型是将形变分解相乘的两个部分。这一模型后续被其他工作广为采用，如\mycite{Bargteil}{2007} 模拟大规模场景下的粘滞流体，\mycite{Gerszewski}{2009} 仿真弹塑性固体，\mycite{Stomakhin}{2013} 用来模拟雪的塑性等。
+在图形学领域，最开始的塑性形变体仿真可以追溯到 \mycite{Terzopoulos}{1988}。随后 \textcolor{blue}{(O'Brien et al. 2002)\supercite{OBrien2002}} 在 FEM 框架中引入了一个加法形式的塑性模型来模拟可延展性材料的碎裂。在其模型中，应变张量被分解为两个部分：弹性形变和塑性形变。\textcolor{blue}{(M\"{u}ller et al. 2004)\supercite{Muller2004}} 同样采用这一模型用来模拟物体的塑性行为，但这一工作是在基于粒子的无网格框架进行的。随后\mycite{Irving}{2004}在其工作中提出了一个关于塑性的乘法模型，并指出其能更好的处理塑性行为。不同于加法模型，乘法模型是将形变分解相乘的两个部分。这一模型后续被其他工作广为采用，如\mycite{Bargteil}{2007} 模拟大规模场景下的粘滞流体，\mycite{Gerszewski}{2009} 仿真弹塑性固体，\mycite{Stomakhin}{2013} 用来模拟雪的塑性等。
 
-然而上述几乎所有的办法几乎都无法直接应用于近场动力学模型，因为在其积分表述中并不存在形变梯度或者应变张量的概念。因此，在本文中我们将呈现一个全新的适用于近场动力学的塑性模型。本文工作采用的塑性模型实际上同样为加法模型，在设计上亦一定程度上参考了\textcolor{blue}{(O'Brien et al. 2002)\parencite{OBrien2002}}。
+然而上述几乎所有的办法几乎都无法直接应用于近场动力学模型，因为在其积分表述中并不存在形变梯度或者应变张量的概念。因此，在本文中我们将呈现一个全新的适用于近场动力学的塑性模型。本文工作采用的塑性模型实际上同样为加法模型，在设计上亦一定程度上参考了\textcolor{blue}{(O'Brien et al. 2002)\supercite{OBrien2002}}。
 
 
 \subsection{碎裂仿真}
@@ -31,17 +31,17 @@
 
 随着学术界的探索，各式各样的仿真算法也被不断提出。但到目前为止，所有基于网格的仿真方法中，有限元方法（FEM）应该是应用最为广泛的。FEM 方法基于连续介质力学分析，然后对物体所在空间进行离散化，并对各离散单元的物理状态进行仿真，以得到较为精确的结果。一般而言，物体被分解为一个四面体网格或者包含其他元素/体素的体网格，给定一个本构模型，可以对体网格中的所有单元进行应力分析，然后将计算得到物理参数以加权的形式累加到与元素相关的几何节点上，最终形成一个全局线性方程来更新各节点的物理状态。如果施加到离散节点的应力超过阈值，则可以根据一定的标准以及策略将几何节点进行分裂。
 
-\textcolor{blue}{(O'Brien et al. 1999)\parencite{OBrien1999}}在图形学领域最先使用 FEM 方法来进行脆性材料的仿真，并且取得了当时最为惊艳的效果。在随后的工作中， O'Brien et al.还进行进一步的扩展，引入了一个加法形式的塑性模型，用来对可延展性材料的碎裂行为进行模拟\textcolor{blue}{(O'Brien et al. 2002)\parencite{OBrien2002}}。在传统碎裂仿真中，考虑到脆性材料一般具有极大的刚度系数，往往需要极小的时间步来保证仿真的稳定性。为缓解此问题，\textcolor{blue}{(M\"{u}ller et al. )\parencite{Muller2001}}使用了基于准静态的有限元分析方法，其基本思想是脆性材料在形变上几乎可以忽略不计，所以对于分离的物体块，直接采用刚体动力学仿真，而对于碰撞产生的碎裂问题，使用准静态有限元分析来进行细致的力平衡计算。此外，针对游戏场景中的实时碎裂仿真，\mycite{Parker}{2009}也提出了一些非常有用的技术。
+\textcolor{blue}{(O'Brien et al. 1999)\supercite{OBrien1999}}在图形学领域最先使用 FEM 方法来进行脆性材料的仿真，并且取得了当时最为惊艳的效果。在随后的工作中， O'Brien 等人还进行进一步的扩展，引入了一个加法形式的塑性模型，用来对可延展性材料的碎裂行为进行模拟\textcolor{blue}{(O'Brien et al. 2002)\supercite{OBrien2002}}。在传统碎裂仿真中，考虑到脆性材料一般具有极大的刚度系数，往往需要极小的时间步来保证仿真的稳定性。为缓解此问题，\textcolor{blue}{(M\"{u}ller et al. )\supercite{Muller2001}}使用了基于准静态的有限元分析方法，其基本思想是脆性材料在形变上几乎可以忽略不计，所以对于分离的物体块，直接采用刚体动力学仿真，而对于碰撞产生的碎裂问题，使用准静态有限元分析来进行细致的力平衡计算。此外，针对游戏场景中的实时碎裂仿真，\mycite{Parker}{2009}也提出了一些非常有用的技术。
 
 在处理碰撞检测以及渲染方面，FEM 具有较大的优势，其有效性也已经被各领域的大量工作所验证。然而，FEM 的最大挑战来源于频繁的拓扑改变操作。由于在仿真过程中，顶点的频繁分裂以及对四面体的剖分，将很有可能形成质量较差的狭长的四面体，并且考虑到使用的一般是一阶线性的形函数(Shape Function)，这些由大形变或者剖分而形成狭长的四面体将极大地影响整个仿真过程的精度和稳定性。为缓解此问题，一般需要对四面体网格进行重采样以及 remeshing 来保证整个网格的质量。尽管在科研领域已经提出多种 remeshing 的方法，但 remeshing 操作往往是非常费时并且难以实现的。
 
-早期的方法直接使用沿单元体边界分裂的方法来实现碎裂，如\mycite{Norton}{1991}, \mycite{Mazarak}{1999}, \mycite{Smith}{2001}, \textcolor{blue}{(M\"{u}ller et al. 2001)\parencite{Muller2001}}，甚至是直接使用单元体删除的办法\mycite{Forest}{2002}。上述方式在处理上比较简单方便，但碎裂产生的路径却相对受限，更为复杂的方式是允许单元的的剖分，为产生的裂纹添加更为丰富的几何细节\mycite{Andrew}{2000}, \mycite{Bielser}{2000}。允许裂纹往任意方向生长虽然在视觉效果上更为自然逼真，但付出的代价是拓扑网格质量的下降，通常需要 remeshing 操作进行弥补\mycite{Neff}{1999}, \textcolor{blue}{(O'Brien et al. )\parencite{OBrien1999}}, \textcolor{blue}{(O'Brien et al. )\parencite{OBrien2002}}。 为避免 remeshing 操作的复杂性，\mycite{Molino}{2004}提出了使用虚节点的方式，其基本原理是当碎裂发生时，在几何表达上使用虚节点的方式将分割的四面体部分拷贝，但在物理计算上对四面体进行完全复制。这一技术由于其简便性很快被应用到其他工作，包括\mycite{Bao}{2007}, \mycite{Sifakis}{2007}, \mycite{Wang}{2015}等。 \mycite{Kaufmann}{2009}则进一步使用拓展的 FEM 方法（XFEM），其关键是使用自定义的基函数来进行计算，而不是使用真实或虚拟地单元体剖分方式。
+早期的方法直接使用沿单元体边界分裂的方法来实现碎裂，如\mycite{Norton}{1991}, \mycite{Mazarak}{1999}, \mycite{Smith}{2001}, \textcolor{blue}{(M\"{u}ller et al. 2001)\supercite{Muller2001}}，甚至是直接使用单元体删除的办法\mycite{Forest}{2002}。上述方式在处理上比较简单方便，但碎裂产生的路径却相对受限，更为复杂的方式是允许单元的的剖分，为产生的裂纹添加更为丰富的几何细节\mycite{Andrew}{2000}, \mycite{Bielser}{2000}。允许裂纹往任意方向生长虽然在视觉效果上更为自然逼真，但付出的代价是拓扑网格质量的下降，通常需要 remeshing 操作进行弥补\mycite{Neff}{1999}, \textcolor{blue}{(O'Brien et al. )\supercite{OBrien1999}}, \textcolor{blue}{(O'Brien et al. )\supercite{OBrien2002}}。 为避免 remeshing 操作的复杂性，\mycite{Molino}{2004}提出了使用虚节点的方式，其基本原理是当碎裂发生时，在几何表达上使用虚节点的方式将分割的四面体部分拷贝，但在物理计算上对四面体进行完全复制。这一技术由于其简便性很快被应用到其他工作，包括\mycite{Bao}{2007}, \mycite{Sifakis}{2007}, \mycite{Wang}{2015}等。 \mycite{Kaufmann}{2009}则进一步使用拓展的 FEM 方法（XFEM），其关键是使用自定义的基函数来进行计算，而不是使用真实或虚拟地单元体剖分方式。
 
-其他典型的有网格方式还包括基于模态分析(Model Analysis)的方法\mycite{Glondu}{2013}，以及使用纯粹基于几何分解来进行实时脆性碎裂仿真的方法\textcolor{blue}{(M\"{u}ller et al. )\parencite{Muller2013}}, \mycite{Schvartzman}{2014}。最近，\mycite{Zhu}{2015} 和\mycite{Hahn}{2015}还提出使用基于边界元的方法(Boundary Element Method)来仿真刚体的碎裂，在他们的工作中，开创性地使用表面网格来同时表示物体边界以及进行碎裂相关的物理计算。
+其他典型的有网格方式还包括基于模态分析(Model Analysis)的方法\mycite{Glondu}{2013}，以及使用纯粹基于几何分解来进行实时脆性碎裂仿真的方法\textcolor{blue}{(M\"{u}ller et al. )\supercite{Muller2013}}, \mycite{Schvartzman}{2014}。最近，\mycite{Zhu}{2015} 和\mycite{Hahn}{2015}还提出使用基于边界元的方法(Boundary Element Method)来仿真刚体的碎裂，在他们的工作中，开创性地使用表面网格来同时表示物体边界以及进行碎裂相关的物理计算。
 
 \subsubsection{无网格方法}
 
-无网格方法早期因拓扑表达上相对受限，在碎裂仿真领域并非主流。但由于其灵活性以及近年来在几何表示难题上面的攻克，关注度在不断得到提升。其不存在FEM 中关于网格拓扑质量的问题，一般仿真的只是空间中离散的粒子，而并不存在网格。典型方法包括提出使用移动最小二乘法 MLS(Moving Least Square) 的方法\textcolor{blue}{(M\"{u}ller et al. )\parencite{Muller2004}}以及\mycite{Pauly}{2005} 提出了一整套全新的无网格框架用来对弹塑性材料的碎裂进行仿真。此外，\mycite{Steinemann}{2009}的工作同样基于无网格的物理计算框架，但其使用显式的表面网格来对形变体的分裂进行追踪。受脆性碎裂中的刚体动力学运动近似启发，
+无网格方法早期因拓扑表达上相对受限，在碎裂仿真领域并非主流。但由于其灵活性以及近年来在几何表示难题上面的攻克，关注度在不断得到提升。其不存在FEM 中关于网格拓扑质量的问题，一般仿真的只是空间中离散的粒子，而并不存在网格。典型方法包括提出使用移动最小二乘法 MLS(Moving Least Square) 的方法\textcolor{blue}{(M\"{u}ller et al. 2004)\supercite{Muller2004}}以及\mycite{Pauly}{2005} 提出了一整套全新的无网格框架用来对弹塑性材料的碎裂进行仿真。此外，\mycite{Steinemann}{2009}的工作同样基于无网格的物理计算框架，但其使用显式的表面网格来对形变体的分裂进行追踪。受脆性碎裂中的刚体动力学运动近似启发，
 \mycite{Liu}{2011}使用 MLPG(Meshless Local Petrov-Galerkin Method) 来进行应力分析，并取得了不错的结果。
 \mycite{Stomakhin}{2013}开创性地使用物质点法（MPM）来模拟雪这种特殊形态物质的碎裂现象，效果惊艳。
 \mycite{Hegemann}{2013}则进一步结合物质点法和基于水平集（level set）的方法来对可拓展性材料进行仿真。

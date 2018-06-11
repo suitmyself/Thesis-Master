@@ -12,7 +12,7 @@
           }
 \end{figure}
 
-在物理仿真中，需要关注三个核心的动力学要素：物体所受内外力，加速度，以及物体的状态。从物体的当前所处状态，即物体的位置和速度信息，来推导物体当前各部分所受力，所涉及的是物理仿真中最为关键的部分——动力学本构模型。通俗而言，本构模型描述的是材料的形变与动力学行为之间的关系，一般也称为内力模型。常见的本构模型包括用来描述固体运动的有限元方法（FEM）、用来描述流体运动的光滑粒子动力学（SPH）\textcolor{blue}{(M\"{u}ller et al. )\parencite{Muller2003}}、 以及适合对雪进行建模的物质点法（MPM）\mycite{Stomakhin}{2013}等。关于本构模型的一般性介绍，将呈现于章节\ref{constitutive_model}。
+在物理仿真中，需要关注三个核心的动力学要素：物体所受内外力，加速度，以及物体的状态。从物体的当前所处状态，即物体的位置和速度信息，来推导物体当前各部分所受力，所涉及的是物理仿真中最为关键的部分——动力学本构模型。通俗而言，本构模型描述的是材料的形变与动力学行为之间的关系，一般也称为内力模型。常见的本构模型包括用来描述固体运动的有限元方法（FEM）、用来描述流体运动的光滑粒子动力学（SPH）\textcolor{blue}{(M\"{u}ller et al. 2003)\supercite{Muller2003}}、 以及适合对雪进行建模的物质点法（MPM）\mycite{Stomakhin}{2013}等。关于本构模型的一般性介绍，将呈现于章节\ref{constitutive_model}。
 
 根据物体所受力 $F$，则可以根据牛顿第二定律直接获得物体的加速度 $a$。 而从物体所受加速度进一步推导得到物体的当前状态，所涉及到的则是离散时间积分算法。离散积分算法的作用是在给定时间步 $\Delta t$ 下，物体的状态将以何种方式进行更新。不同的离散时间积分算法对物理仿真的稳定性、精确性和效率有重大影响，本文将在\ref{numerical_method} 小节详细阐述。
 
@@ -43,7 +43,7 @@
 \label{constitutive_model}
 在图形学领域及工程材料领域，一般研究的是物质的宏观运动。但实际上物质都是由大量分子组成的，分子间的真空区尺度远大于分子本身，并且每个分子在无休止的做不规则运动，相互间经常碰撞，交换着动量和能量。因此物质的微观结构和运动无论在时间上还是空间上都充满着不均匀性、离散性和随机性。而另一方面人们用仪器测量或者用肉眼观察到的物质宏观结构和运动却又明显呈现出均匀性、连续性和确定性。这两种特性如此之不同却又和谐统一地表现于物质之中。研究物体的宏观运动存在两种不同的途径，一种是基于统计物理的方法，其直接从分子和原子的运动出发，采用统计平均的方法建立宏观物理量满足的方程，但这种方法迄今为止还不完善。另一种方法则是以连续介质为假设，认为物质连续地充满物体所在的整个空间，构成物体的物质单元或质点在微观上认为充分大，但在宏观上又被认为足够小。其具有的宏观物理量（质量、速度、力）满足一切都应遵循的物理定律及物理性质，例如牛顿定律、质量守恒定律和能量守恒定律等。这一假设已经被学术界广为采用，并且在揭示物质材料的动力学性质上已经取得巨大成功。
 
-现有的本构模型几乎都基于连续介质假设，典型如描述固体的连续介质力学\mycite{Eduardo}{2013}和描述流体的Navier-Stokes方程。本构模型描述的是在连续介质假设下，物体某微元根据自身状态以及周围状态所作出的反应，其一般以解析形式表达在外力和边界条件作用下，物体产生的内力将如何反抗相应的形变行为。
+现有的本构模型几乎都基于连续介质假设，典型如描述固体的连续介质力学\mycite{Eduardo}{2013}和描述流体的 Navier-Stokes 方程。本构模型描述的是在连续介质假设下，物体某微元根据自身状态以及周围状态所作出的反应，其一般以解析形式表达在外力和边界条件作用下，物体产生的内力将如何反抗相应的形变行为。
 
 本文工作所采用的近场动力学理论和连续介质力学中的线性模型在理论上是对等的，所以下面将对连续介质力学的理论基础尤其是线性模型做必要介绍。
 
@@ -149,11 +149,11 @@
   \includegraphics[width=\linewidth]{chap/image/fracture_model}
 
   \caption{\label{fracture_model}
-           碎裂模型示意图。左边为Rankine Condition，右边为 Separation Tensor。图片分别取自\textcolor{blue}{(M\"{u}ller et al. )\parencite{Muller2004}} 和\textcolor{blue}{(O'Brien et al. )\parencite{OBrien1999}}。
+           碎裂模型示意图。左边为Rankine Condition，右边为 Separation Tensor。图片分别取自\textcolor{blue}{(M\"{u}ller et al. 2004)\supercite{Muller2004}} 和\textcolor{blue}{(O'Brien et al. 1999)\supercite{OBrien1999}}。
           }
 \end{figure}
 
-最常用的碎裂模型包括 Rankine Condition，其基本原理是计算物质节点的主应力大小 $\mathbf{\sigma}_{max}$ 以及主应力方向 $\textbf{n}_{max}$，如果 $\mathbf{\sigma}_{max}$ 超出阈值则认定碎裂发生，并且裂纹方向即为 $\textbf{n}_{max}$。 应用此碎裂模型的典型工作包括\textcolor{blue}{(M\"{u}ller et al.)\parencite{Muller2004}}。 但 Rankine Condition 的缺陷是即使某一方向受力较大，也会导致碎裂发生，而事实上碎裂是由相互抵消的力（挤压或者撕扯）的大小而决定的。因此，另一种常用的碎裂模型是 Separation Tensor\textcolor{blue}{(O'Brien et al.)\parencite{OBrien1999}} ，其计算的是相互抵消的应力最大的力大小和方向，因此克服了 Rankine Condition 的缺陷，不过其在计算上相对要较为复杂。两种碎裂模型的示意图如图\ref{fracture_model} 所示。
+最常用的碎裂模型包括 Rankine Condition，其基本原理是计算物质节点的主应力大小 $\mathbf{\sigma}_{max}$ 以及主应力方向 $\textbf{n}_{max}$，如果 $\mathbf{\sigma}_{max}$ 超出阈值则认定碎裂发生，并且裂纹方向即为 $\textbf{n}_{max}$。 应用此碎裂模型的典型工作包括\textcolor{blue}{(M\"{u}ller et al. 2004)\supercite{Muller2004}}。 但 Rankine Condition 的缺陷是即使某一方向受力较大，也会导致碎裂发生，而事实上碎裂是由相互抵消的力（挤压或者撕扯）的大小而决定的。因此，另一种常用的碎裂模型是 Separation Tensor\textcolor{blue}{(O'Brien et al. 1999)\supercite{OBrien1999}} ，其计算的是相互抵消的应力最大的力大小和方向，因此克服了 Rankine Condition 的缺陷，不过其在计算上相对要较为复杂。两种碎裂模型的示意图如图\ref{fracture_model} 所示。
 
 对于质点弹簧系统或者无网格中的方法，其作用关系一般是通过粒子与粒子之间的连接而决定的。因此，在碎裂模型上往往不涉及裂纹生长的方向，而是可以直接通过去除粒子之间的相互作用力来体现。在无网格框架中，最常用的碎裂模型是临界伸长量（critical stretch）。假设粒子之间通过弹簧相连，如果其伸长比例超过阈值，则断裂发生。本文所用的碎裂模型基于 critical stretch，但对其有所改进，具体在第四章详述。
 
@@ -326,7 +326,7 @@
           }
 \end{figure}
 
-对于近场动力学模型，可以根据图\ref{peridynamics_comparison}中图作更为细致的形式化表述。具体而言，材质中的任何一个物质粒子 $\mathbf{x}$ 将会和其周边半径为 $\delta$ 内的粒子发生相互作用，这一半径 $\delta$ 被定义为\textbf{邻域半径}（horizon），而位于邻域半径 $\delta$ 之内的粒子被定义\textbf{邻域}（family），$H_\mathbf{x}$。对于连续性的材料，在离散化之前，邻域范围内的粒子数量可认定是无穷的。从用粒子来表示物体的观点来看，近场动力学的基本思想和其他无网格方法\textcolor{blue}{(M\"{u}ller et al.)\parencite{Muller2003}}并无大差异，最大的区别在作用半径 $\delta$ 的引入，这也是近场动力学理论被认定为非局域性理论的原由。 \mycite{Silling}{2003}证明，当 $\delta$ 趋向于0 时，近场动力学模型将会退化为经典的连续介质力学。而当 $\delta$ 区域无穷大时，则会成为连续形式的分子动力学理论。
+对于近场动力学模型，可以根据图\ref{peridynamics_comparison}中图作更为细致的形式化表述。具体而言，材质中的任何一个物质粒子 $\mathbf{x}$ 将会和其周边半径为 $\delta$ 内的粒子发生相互作用，这一半径 $\delta$ 被定义为\textbf{邻域半径}（horizon），而位于邻域半径 $\delta$ 之内的粒子被定义\textbf{邻域}（family），$H_\mathbf{x}$。对于连续性的材料，在离散化之前，邻域范围内的粒子数量可认定是无穷的。从用粒子来表示物体的观点来看，近场动力学的基本思想和其他无网格方法\textcolor{blue}{(M\"{u}ller et al. 2003)\supercite{Muller2003}}并无大差异，最大的区别在作用半径 $\delta$ 的引入，这也是近场动力学理论被认定为非局域性理论的原由。 \mycite{Silling}{2003}证明，当 $\delta$ 趋向于0 时，近场动力学模型将会退化为经典的连续介质力学。而当 $\delta$ 区域无穷大时，则会成为连续形式的分子动力学理论。
 
 在近场动力学之前，几乎所有的动力学模型都采用的是微分形式的本构方程（governing function）。最为典型的就是在连续介质力学理论中，本构方程一般使用如下形式，
 
@@ -335,7 +335,7 @@
 \rho\ddot{\mathbf{u}}(\mathbf{x}) = \nabla\cdot\sigma(\mathbf{x})+\mathbf{b}(\mathbf{x})
 \end{equation}
 
-其中 $\rho$ 表示粒子的质量密度。$\ddot{\mathbf{u}}$ 为向量，表示粒子的位移。$\mathbf{b}$ 表示粒子所受外力，一般包括重力或者由碰撞导致的外力等。类似的符号表示将同样应用于后续近场动力学的本构方程，后面将不再赘述。在方程\ref{fem_governing_function} 中，最为关键的物理量是 $\nabla\cdot\sigma$，即是二阶应力张量 $\sigma$ 的散度微分，其表示单位体积物体所受的力（力密度）。如前面章节\ref{constitutive_model} 所述， $\sigma$ 的计算尤为关键，其包含物体所有的本构信息。在此，需要尤其注意的是，$\nabla\cdot\sigma$ 是关于空间位置的偏微分，而空间微分在不连续之处并不能很好定义。在物体边界以及碎裂发生之处，空间微分很容易导致奇异值问题。因此在基于连续介质力学的离散框架（FEM）以及相关工作中，往往需要额外的工作来特殊对待碎裂问题，例如\textcolor{blue}{(O'Brien et al. 1999)\parencite{OBrien1999}},\textcolor{blue}{(O'Brien et al. 2002)\parencite{OBrien2002}}中的 remeshing 操作。事实上，这一问题并不仅仅存在于有网格方法，\mycite{Madenci}{2014} 指出，几乎所有的无网格方法使用的都是微分形式的本构方程，因而都不能避免此问题。
+其中 $\rho$ 表示粒子的质量密度。$\ddot{\mathbf{u}}$ 为向量，表示粒子的位移。$\mathbf{b}$ 表示粒子所受外力，一般包括重力或者由碰撞导致的外力等。类似的符号表示将同样应用于后续近场动力学的本构方程，后面将不再赘述。在方程\ref{fem_governing_function} 中，最为关键的物理量是 $\nabla\cdot\sigma$，即是二阶应力张量 $\sigma$ 的散度微分，其表示单位体积物体所受的力（力密度）。如前面章节\ref{constitutive_model} 所述， $\sigma$ 的计算尤为关键，其包含物体所有的本构信息。在此，需要尤其注意的是，$\nabla\cdot\sigma$ 是关于空间位置的偏微分，而空间微分在不连续之处并不能很好定义。在物体边界以及碎裂发生之处，空间微分很容易导致奇异值问题。因此在基于连续介质力学的离散框架（FEM）以及相关工作中，往往需要额外的工作来特殊对待碎裂问题，例如\textcolor{blue}{(O'Brien et al. 1999)\supercite{OBrien1999}},\textcolor{blue}{(O'Brien et al. 2002)\supercite{OBrien2002}}中的 remeshing 操作。事实上，这一问题并不仅仅存在于有网格方法，\mycite{Madenci}{2014} 指出，几乎所有的无网格方法使用的都是微分形式的本构方程，因而都不能避免此问题。
 
 不同于以往方法，近场动力学使用的是积分形式的动力学表述，这也是其另一大特征。由于是积分形式，近场动力学的本构方程在不连续处将仍然保持良好定义，并且材质的损伤本身就是模型的一部分。这一优势使得近场动力学非常适合处理不连续问题，尤为是碎裂现象。具体而言，近场动力学中关于物质粒子 $\mathbf{x}$ 的本构方程可以写为
 
@@ -344,7 +344,7 @@
 \label{pdm_governing_function}
 \end{equation}
 
-其中 $\rho, \mathbf{u}, \mathbf{b}$ 的含义同式\ref{fem_governing_function}一致。$\mathbf{x}'$ 表示属于 $\mathbf{x}$ 的邻域 $H_\mathbf{x}$ 范围内另外一个物质粒子。$\mathbf{T}\langle\mathbf{x}',\mathbf{x}\rangle$ 和 $\mathbf{T}\langle\mathbf{x},\mathbf{x}'\rangle$ 是两个关键变量，其包含了材质的所有本构信息。$\mathbf{T}\langle\mathbf{x}',\mathbf{x}\rangle$ 表示粒子 $\mathbf{x}'$ 施加给粒子 $\mathbf{x}$ 的内力，而 $\mathbf{T}\langle\mathbf{x},\mathbf{x}'\rangle$ 则相反，表示粒子 $\mathbf{x}$ 施加给粒子 $\mathbf{x}'$ 的内力。注意如章节\ref{pdm_history}所述，对于 state-based 模型，这两个变量并不一定相同，但必须同时出现在本构方程中以遵循牛顿第三定律，这一策略类似于 SPH 方法\textcolor{blue}{(M\"{u}ller et al. 2003)\parencite{Muller2003}}。尖括号$\langle\cdot\rangle$ 符号表示关于 $H_\mathbf{x}$ 的函数，其在\mycite{Silling}{2007}中被定义为\textbf{状态}（state）。需要尤其注意的是本构方程中的积分符号 $\int_{H_\mathbf{x}}$，这是近场动力学模型区别其他理论最根本上的不同。可以看出，整个方程是基于粒子的位移 $\mathbf{u}$，而不是基于位移的空间微分的，因此也使得其对于不连续问题的处理更加方便以及稳定。在粒子离散框架下，关于邻域 $H_\mathbf{x}$ 的连续积分可以进一步用粒子的累加和来表示，即，
+其中 $\rho, \mathbf{u}, \mathbf{b}$ 的含义同式\ref{fem_governing_function}一致。$\mathbf{x}'$ 表示属于 $\mathbf{x}$ 的邻域 $H_\mathbf{x}$ 范围内另外一个物质粒子。$\mathbf{T}\langle\mathbf{x}',\mathbf{x}\rangle$ 和 $\mathbf{T}\langle\mathbf{x},\mathbf{x}'\rangle$ 是两个关键变量，其包含了材质的所有本构信息。$\mathbf{T}\langle\mathbf{x}',\mathbf{x}\rangle$ 表示粒子 $\mathbf{x}'$ 施加给粒子 $\mathbf{x}$ 的内力，而 $\mathbf{T}\langle\mathbf{x},\mathbf{x}'\rangle$ 则相反，表示粒子 $\mathbf{x}$ 施加给粒子 $\mathbf{x}'$ 的内力。注意如章节\ref{pdm_history}所述，对于 state-based 模型，这两个变量并不一定相同，但必须同时出现在本构方程中以遵循牛顿第三定律，这一策略类似于 SPH 方法\textcolor{blue}{(M\"{u}ller et al. 2003)\supercite{Muller2003}}。尖括号$\langle\cdot\rangle$ 符号表示关于 $H_\mathbf{x}$ 的函数，其在\mycite{Silling}{2007}中被定义为\textbf{状态}（state）。需要尤其注意的是本构方程中的积分符号 $\int_{H_\mathbf{x}}$，这是近场动力学模型区别其他理论最根本上的不同。可以看出，整个方程是基于粒子的位移 $\mathbf{u}$，而不是基于位移的空间微分的，因此也使得其对于不连续问题的处理更加方便以及稳定。在粒子离散框架下，关于邻域 $H_\mathbf{x}$ 的连续积分可以进一步用粒子的累加和来表示，即，
 
 \begin{equation}
 \rho\ddot{\mathbf{u}}(\mathbf{x}) = \sum_{\mathbf{x}'\in H_\mathbf{x}}[\mathbf{T}\langle\mathbf{x}',\mathbf{x}\rangle - \mathbf{T}\langle\mathbf{x},\mathbf{x}'\rangle]V_{\mathbf{x}'}+\mathbf{b}(\mathbf{x}),

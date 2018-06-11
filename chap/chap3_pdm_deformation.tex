@@ -121,7 +121,7 @@ A_{dev}^c=\sqrt{2\Psi_0}\mathrm{sign}(A_{dev}),
 e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\triangle e_n^p|}\big).
 \end{equation}
 
-在上式中下标 $n$ 和 $n + 1$ 分别表示当前时间步和下一时间步。在时间步 $n$ 时，可以算得总的弹性形变量，当前塑性形变由前续仿真步累计而来，因此可以算得当前塑性形变部分的增量。注意，上式中的 $\gamma$ 参数用来对塑性的总量进行限制，这一参数并没有出现在\mycite{Mitchell}{2011}所提出的模型中，而是本文借鉴了\textcolor{blue}{(O'Brien et al. 2002)\parencite{OBrien2002}} 所提出的加法模型，设计了此参量。实验证明，在引入此参量之后，可以获得对于塑性行为更多的控制，以及对于仿真的稳定性也大有裨益。但值得注意的是，这一参数的引入并不符合真正的材料属性，即使在发生极大塑性形变行为下，材料也不可能重新进入弹性状态，因此 $\gamma$ 参数更多的是防止仿真过程中由于数值抖动而引起整个仿真崩溃。本文所用的塑性模型可总结为如图\ref{plasticity_model}所示：
+在上式中下标 $n$ 和 $n + 1$ 分别表示当前时间步和下一时间步。在时间步 $n$ 时，可以算得总的弹性形变量，当前塑性形变由前续仿真步累计而来，因此可以算得当前塑性形变部分的增量。注意，上式中的 $\gamma$ 参数用来对塑性的总量进行限制，这一参数并没有出现在\mycite{Mitchell}{2011}所提出的模型中，而是本文借鉴了\textcolor{blue}{(O'Brien et al. 2002)\supercite{OBrien2002}} 所提出的加法模型，设计了此参量。实验证明，在引入此参量之后，可以获得对于塑性行为更多的控制，以及对于仿真的稳定性也大有裨益。但值得注意的是，这一参数的引入并不符合真正的材料属性，即使在发生极大塑性形变行为下，材料也不可能重新进入弹性状态，因此 $\gamma$ 参数更多的是防止仿真过程中由于数值抖动而引起整个仿真崩溃。本文所用的塑性模型可总结为如图\ref{plasticity_model}所示：
 
 \begin{figure}[!htb]
   \centering
@@ -258,9 +258,9 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
           }
 \end{figure}
 
-下表\ref{deformation_results_table}展示了上述形变仿真实验所有模型参数以及物理参数。从表中所示数据来看，近场动力学方法能够取得和 FEM 类似的计算效率，但近场动力学方法相对更易实现以及并行化。对于绝大多数和 FEM 对比的实验，本文将半径 $\delta$ 初始化为 $1.0\lambda$，其中 $\lambda$ 为四面体体网格的平均边长度。此举原因是当 $\delta$ 趋向于 0 时，近场动力学将会收敛到经典连续介质力学。当 $\delta$ 取此值时，实际上相当于类似于在 FEM 中取 1 邻域进行力的计算。当然，我们也可以对 $\delta$ 进行微调，以获得和 FEM 更加同步的结果。例如，在图 \ref{demo_armadillo_vs_fem} 中，$\delta$ 被调整为 $1.38\lambda$ 以获得最佳效果。事实上，本文对不同的 $\delta$ 进行试验，实践发现当 $\delta = 1.0\sim2.0 \lambda$ 时，效果差异不大，本文也推荐使用这一范围数值。而当 $\delta > 2.0 \lambda$ 时，将可以导致与位于边界的粒子发生相互作用的粒子不足，从而使材质更软。在这种情形下，对边界粒子进行纠正则是必要的。
+下表\ref{deformation_results_table}展示了上述形变仿真实验所有模型参数以及物理参数。从表中所示数据来看，近场动力学方法能够取得和 FEM 类似的计算效率，但近场动力学方法相对更易实现以及并行化。对于绝大多数和 FEM 对比的实验，本文将半径 $\delta$ 初始化为 $1.0\lambda$，其中 $\lambda$ 为四面体体网格的平均边长度。此举原因是当 $\delta$ 趋向于 0 时，近场动力学将会收敛到经典连续介质力学。当 $\delta$ 取此值时，实际上就相当于类似于在 FEM 中取 1 邻域进行力的计算。当然，我们也可以对 $\delta$ 进行微调，以获得和 FEM 更加同步的结果。例如，在图 \ref{demo_armadillo_vs_fem} 中，$\delta$ 被调整为 $1.38\lambda$ 以获得最佳效果。事实上，本文对不同的 $\delta$ 进行试验，实践发现当 $\delta = 1.0\sim2.0 \lambda$ 时，效果差异不大，本文也推荐使用这一范围数值。而当 $\delta > 2.0 \lambda$ 时，将导致与位于边界的粒子发生相互作用的粒子不足，从而使材质更软。在这种情形下，对边界粒子进行纠正则是必要的。
 
-此外，为降低碰撞检测与反应的负担以及提高仿真的稳定性，可以对部分例子使用阻尼。本文主要使用两种类型，空气阻力（air damping）和拉普拉斯平滑（Laplacian smoothing）。对于空气阻尼，其速度更新为 $\textbf{v}_{\mathrm{new}} = (1 - \lambda_{a})\textbf{v}_{\mathrm{old}}$。而对于拉普拉斯平滑，其形式为 $\textbf{v}_{\mathrm{new}} = \textbf{v}_{\mathrm{old}}+ \lambda_l\textbf{L}(\textbf{v}_\mathrm{old})$，本质上是取周围粒子速度的平均值。 在表\ref{deformation_results_table}中，我们同样列出这些数值以供参考。
+此外，为降低碰撞检测与反应的负担，以及提高整个仿真的稳定性，可以对部分例子使用阻尼。本文主要使用两种类型的阻尼，空气阻力（air damping）和拉普拉斯平滑（Laplacian smoothing）。对于空气阻尼，其速度更新为 $\textbf{v}_{\mathrm{new}} = (1 - \lambda_{a})\textbf{v}_{\mathrm{old}}$。而对于拉普拉斯平滑，其形式为 $\textbf{v}_{\mathrm{new}} = \textbf{v}_{\mathrm{old}}+ \lambda_l\textbf{L}(\textbf{v}_\mathrm{old})$，本质上可认作是取周围粒子速度的平均值。 在表\ref{deformation_results_table} 中，我们同样列出这些 damping 数值以供参考。
 
 \begin{table*}[htb]
 \centerline{
