@@ -10,7 +10,7 @@
 \mathbf{T}\langle\mathbf{x}_j,\mathbf{x}_i\rangle = \frac{1}{2}A\frac{\mathbf{y}_j-\mathbf{y}_i}{|\mathbf{y}_j-\mathbf{y}_i|}
 \end{equation}
 
-其中 $\mathbf{x}$ 和 $\mathbf{y}$ 分别是粒子形变前和形变后的位置，力密度的方向即为粒子之间的连线方向，由$\frac{\mathbf{y}_j-\mathbf{y}_i}{|\mathbf{y}_j-\mathbf{y}_i|}$给定。$A$ 则代表力的大小，其包含所有的本构信息，并由式 \ref{eq:49} 给出（注意下标有所改变）
+其中 $\mathbf{x}$ 和 $\mathbf{y}$ 分别是粒子形变前和形变后的位置，力密度的方向即为粒子之间的连线方向，由$\frac{\mathbf{y}_j-\mathbf{y}_i}{|\mathbf{y}_j-\mathbf{y}_i|}$ 给定。$A$ 则代表力的大小，其包含所有的本构信息，并由式 \ref{eq:49} 给出（注意下标有所改变）
 
 \begin{equation}
 A = 4\omega_{ij}\left\{ad\frac{\mb{y}_j-\mb{y}_i}{|\mb{y}_j-\mb{y}_i|}\cdot\frac{\mb{x}_j-\mb{x}_i}{|\mb{x}_j-\mb{x}_i|}\theta_i
@@ -121,7 +121,7 @@ A_{dev}^c=\sqrt{2\Psi_0}\mathrm{sign}(A_{dev}),
 e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\triangle e_n^p|}\big).
 \end{equation}
 
-在上式中下标 $n$ 和 $n + 1$ 分别表示当前时间步和下一时间步。在时间步 $n$ 时，可以算得总的弹性形变量，当前塑性形变由前续仿真步累计而来，因此可以算得当前塑性形变部分的增量。注意，上式中的 $\gamma$ 参数用来对塑性的总量进行限制，这一参数并没有出现在\mycite{Mitchell}{2011}所提出的模型中，而是本文借鉴了\textcolor{blue}{(O'Brien et al. 2002)\parencite{OBrien2002}}所提出的加法模型，设计了此参量。实验证明，在引入此参量之后，可以获得对于塑性行为更多的控制，以及对于仿真的稳定性也大有裨益。但值得注意的是，这一参数的引入并不符合真正的材料属性，即使在发生极大塑性形变行为下，材料也不可能重新进入弹性状态，因此 $\gamma$ 参数更多的是防止仿真过程中由于数值抖动而引起整个仿真崩溃。本文所用的塑性模型可总结为如图\ref{plasticity_model}所示：
+在上式中下标 $n$ 和 $n + 1$ 分别表示当前时间步和下一时间步。在时间步 $n$ 时，可以算得总的弹性形变量，当前塑性形变由前续仿真步累计而来，因此可以算得当前塑性形变部分的增量。注意，上式中的 $\gamma$ 参数用来对塑性的总量进行限制，这一参数并没有出现在\mycite{Mitchell}{2011}所提出的模型中，而是本文借鉴了\textcolor{blue}{(O'Brien et al. 2002)\parencite{OBrien2002}} 所提出的加法模型，设计了此参量。实验证明，在引入此参量之后，可以获得对于塑性行为更多的控制，以及对于仿真的稳定性也大有裨益。但值得注意的是，这一参数的引入并不符合真正的材料属性，即使在发生极大塑性形变行为下，材料也不可能重新进入弹性状态，因此 $\gamma$ 参数更多的是防止仿真过程中由于数值抖动而引起整个仿真崩溃。本文所用的塑性模型可总结为如图\ref{plasticity_model}所示：
 
 \begin{figure}[!htb]
   \centering
@@ -196,7 +196,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
   \includegraphics[width=0.7\linewidth]{chap/image/demo_impact_upside}
 
   \caption{\label{demo_impact_upside}
-           弹性形变和塑性形变对比实验。不同材质的物质被以恒定速度运行球从上沿方向撞击。图(a)表示相同的初始状态。图(c)表示弹性物体被撞击，然后发生形变，但是在图(c)中，形变被恢复。图(d)表示物体被撞击后发生塑性形变，并且如图(e)所示，并不能恢复到原始位置。
+           弹性形变和塑性形变对比实验。不同材质的物质被以恒定速度运行球从上沿方向撞击。图(a) 表示相同的初始状态。图(c) 表示弹性物体被撞击，然后发生形变，但是在图(c)中，形变被恢复。图(d)表示物体被撞击后发生塑性形变，并且如图(e) 所示，并不能恢复到原始位置。
           }
 \end{figure}
 
@@ -212,7 +212,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
           }
 \end{figure}
 
-最后，本文进行了四组同 FEM 的对比实验。其中图\ref{demo_strip_vs_fem}为长条在重力下的弯曲实验。可以看到，近场动力学方法和 FEM 方法取得了几乎一致的效果。
+最后，本文进行了四组同 FEM 的对比实验。其中图\ref{demo_strip_vs_fem} 为长条在重力下的弯曲实验。可以看到，近场动力学方法和 FEM 方法取得了几乎一致的效果。
 
 \begin{figure}[!htb]
   \centering
@@ -224,7 +224,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
           }
 \end{figure}
 
-图\ref{demo_bar_oscillate_vs_fem}所示实验为晃动的 Bar。仿真初始时， Bar 被摆到一定角度位置，然后松开发生晃动。对于这种大形变行为，可以显著感受到使用线性弹性模型的 FEM 方法将出现明显的不自然行为。并且可以看出，本文所提的线性近场动力学模型和 FEM 中的共旋线性模型在效果上几乎完全一致。本文进一步对两者的误差进行衡量，发现两者位置偏离小于 10\%。其中位置偏移通过 $Error = \frac{|\bm{x}_p-\bm{x}_p^{ref}|}{d}$ 定量衡量，其中 $d$ 为物体包围盒的对角长度。
+图\ref{demo_bar_oscillate_vs_fem}所示实验为晃动的 Bar。仿真初始时， Bar 被摆到一定角度位置，然后松开发生晃动。对于这种大形变行为，可以显著感受到使用线性弹性模型的 FEM 方法将出现明显的不自然行为。并且可以看出，本文所提的线性近场动力学模型和 FEM 中的共旋线性模型在效果上几乎完全一致。本文进一步对两者的误差进行衡量，发现两者位置偏离小于 10\%。 其中位置偏移通过 $Error = \frac{|\bm{x}_p-\bm{x}_p^{ref}|}{d}$ 定量衡量，其中 $d$ 为物体包围盒的对角长度。
 
 \begin{figure}[!htb]
   \centering
@@ -236,7 +236,7 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
           }
 \end{figure}
 
-从效果上看，近场动力学中的线性模型要远好于 FEM 中的线性模型，并且可以取得和 FEM 中的共旋线性模型相比的效果。原因在于其并没有使用 FEM 中柯西应变张量，因此并不是几何线性中的。进一步而言，在近场动力学中，纯粹的刚性变化并不会像 FEM 中的线性模型一样，产生虚拟的力（ghost force），从而大程度地拓展了近场动力学模型的适用范围。在图\ref{demo_bar_twist_vs_fem}中，本文还对扭曲的 Bar 进行对比实验，从图中可以更明显的看出 FEM 线性模型的缺陷。图\ref{demo_armadillo_vs_fem}展示为 Armadillo 复杂的周期性振荡形变行为，可以看到，在如此复杂的形变行为上，近场动力学仍然取得了和 FEM 非常一致的效果。
+从效果上看，近场动力学中的线性模型要远好于 FEM 中的线性模型，并且可以取得和 FEM 中的共旋线性模型相比的效果。原因在于其并没有使用 FEM 中柯西应变张量，因此并不是几何线性中的。进一步而言，在近场动力学中，纯粹的刚性变化并不会像 FEM 中的线性模型一样，产生虚拟的力（ghost force），从而大程度地拓展了近场动力学模型的适用范围。在图\ref{demo_bar_twist_vs_fem}中，本文还对扭曲的 Bar 进行对比实验，从图中可以更明显的看出 FEM 线性模型的缺陷。图\ref{demo_armadillo_vs_fem} 展示为 Armadillo 复杂的周期性振荡形变行为，可以看到，在如此复杂的形变行为上，近场动力学仍然取得了和 FEM 非常一致的效果。
 
 \begin{figure}[!htb]
   \centering
@@ -258,7 +258,9 @@ e_{n+1}^p = (e_n^p+\triangle e_n^p)\mathrm{min}\big(1,\frac{\gamma}{|e_n^p+\tria
           }
 \end{figure}
 
-下表\ref{deformation_results_table}展示了上述形变仿真实验所有模型参数以及物理参数。从表中所示数据来看，近场动力学方法能够取得和 FEM 类似的计算效率，但近场动力学方法相对更易实现以及并行化。
+下表\ref{deformation_results_table}展示了上述形变仿真实验所有模型参数以及物理参数。从表中所示数据来看，近场动力学方法能够取得和 FEM 类似的计算效率，但近场动力学方法相对更易实现以及并行化。对于绝大多数和 FEM 对比的实验，本文将半径 $\delta$ 初始化为 $1.0\lambda$，其中 $\lambda$ 为四面体体网格的平均边长度。此举原因是当 $\delta$ 趋向于 0 时，近场动力学将会收敛到经典连续介质力学。当 $\delta$ 取此值时，实际上相当于类似于在 FEM 中取 1 邻域进行力的计算。当然，我们也可以对 $\delta$ 进行微调，以获得和 FEM 更加同步的结果。例如，在图 \ref{demo_armadillo_vs_fem} 中，$\delta$ 被调整为 $1.38\lambda$ 以获得最佳效果。事实上，本文对不同的 $\delta$ 进行试验，实践发现当 $\delta = 1.0\sim2.0 \lambda$ 时，效果差异不大，本文也推荐使用这一范围数值。而当 $\delta > 2.0 \lambda$ 时，将可以导致与位于边界的粒子发生相互作用的粒子不足，从而使材质更软。在这种情形下，对边界粒子进行纠正则是必要的。
+
+此外，为降低碰撞检测与反应的负担以及提高仿真的稳定性，可以对部分例子使用阻尼。本文主要使用两种类型，空气阻力（air damping）和拉普拉斯平滑（Laplacian smoothing）。对于空气阻尼，其速度更新为 $\textbf{v}_{\mathrm{new}} = (1 - \lambda_{a})\textbf{v}_{\mathrm{old}}$。而对于拉普拉斯平滑，其形式为 $\textbf{v}_{\mathrm{new}} = \textbf{v}_{\mathrm{old}}+ \lambda_l\textbf{L}(\textbf{v}_\mathrm{old})$，本质上是取周围粒子速度的平均值。 在表\ref{deformation_results_table}中，我们同样列出这些数值以供参考。
 
 \begin{table*}[htb]
 \centerline{
